@@ -3,11 +3,19 @@ let template = await templateFile.text();
 
 let MovieCard = {};
 
-MovieCard.format = function () {
+MovieCard.format = function (movie) {
   let html = template;
-  // html = html.replace("{{img}}", hAbout);
-  // html = html.replace("{{title}}", hAbout);
-  return html;
+  let url = "../server/images/"+ movie.image;
+  html = html.replace("{{img}}", url);
+  html = html.replace("{title}}", movie.name);
+};
+
+MovieCard.formatMany = function (movies) {
+  let html = '';
+    for (const movie of movies) {
+        html += MovieCard.format(movie);
+    }
+    return html;
 };
 
 export { MovieCard };

@@ -25,6 +25,16 @@
       // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
       // Une fois l'application terminée, on pourrait remettre let C.
       window.C = {};
+      
+      C.getMovie = async function(name){
+      let data = await DataMovie.request( name);
+      if (data.length == 0){
+        data = [
+          {name: "Il n'y a pas de film disponible pour l'instant"}
+        ];
+      }
+      V.renderMovie(data);
+    }
 
       C.handlerAbout = function () {
         alert(
@@ -51,9 +61,9 @@
         let header = document.querySelector("#header");
         header.innerHTML = NavBar.format(hAbout);
       };
-      V.renderMovieCard = function () {
+      V.renderMovieCard = function (movies) {
         let content = document.querySelector("#content");
-        content.innerHTML = MovieCard.format();
+        content.innerHTML = MovieCard.formatMany(movies);
       };
 
       C.start(); // Démarre l'application
