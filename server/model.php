@@ -26,15 +26,15 @@ define("DBPWD", "kamara4");
  * @param string $j Le jour pour lequel le menu est récupéré.
  * @return array Un tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
  */
-function getMovie($n){
+function getMovieAll(){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
-    $sql = "select name, year, length, description, director, image from Category where name=:name";
+    $sql = "select id,name,image from Movie WHERE 1;";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
     // Lie le paramètre à la valeur
-    $stmt->bindParam(':name', $n);
+    // $stmt->bindParam(':name', $n);
     // Exécute la requête SQL
     $stmt->execute();
     // Récupère les résultats de la requête sous forme d'objets

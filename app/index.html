@@ -18,23 +18,15 @@
 
     <script type="module">
       import { NavBar } from "./component/NavBar/script.js";
-      import { MovieCard} from "./component/MovieCard/script.js";
-      import {DataMovie} from "/app/data/dataMovie.js"
+      import {MovieCard} from "./component/MovieCard/script.js";
+      import {DataMovie} from "./data/dataMovie.js"
 
       // Controleur
       // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
       // Une fois l'application terminée, on pourrait remettre let C.
       window.C = {};
       
-      C.getMovie = async function(name){
-      let data = await DataMovie.request(name);
-      if (data.length == 0){
-        data = [
-          {name: "Il n'y a pas de film disponible pour l'instant"}
-        ];
-      }
-      V.renderMovie(data);
-    }
+      
 
       C.handlerAbout = function () {
         alert(
@@ -44,7 +36,7 @@
 
       C.start = function () {
         V.renderNavBar("C.handlerAbout()");
-        C.getMovie()
+        C.getAllMovies();
       };
 
       // Vue (contient tout ce qui est relatif à l'affichage)
@@ -61,10 +53,21 @@
         let header = document.querySelector("#header");
         header.innerHTML = NavBar.format(hAbout);
       };
+
       V.renderMovieCard = function (movies) {
         let content = document.querySelector("#content");
         content.innerHTML = MovieCard.formatMany(movies);
       };
+
+      C.getAllMovies = async function(){
+      let data = await DataMovie.request();
+      if (data.length == 0){
+        data = [
+          {name: "Il n'y a pas de film disponible pour l'instant"}
+        ];
+      }
+      V.renderMovieCard(data);
+    }
 
       C.start(); // Démarre l'application
     </script>

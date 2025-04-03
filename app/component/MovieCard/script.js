@@ -6,8 +6,9 @@ let MovieCard = {};
 MovieCard.format = function (movie) {
   let html = template;
   // let url = "../server/images/"+ movie.image;
-  html = html.replace("{{img}}", url);
-  html = html.replace("{title}}", movie.name);
+  html = html.replace("{{img}}", movie.image);
+  html = html.replace("{{title}}", movie.name);
+  return html;
 };
 
 MovieCard.formatMany = function (movies) {
