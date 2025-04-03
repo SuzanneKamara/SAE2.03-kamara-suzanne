@@ -1,12 +1,12 @@
 <div class="addMovie">
   <h4 class="addMovie__title"># Ajouter ou modifier un film</h4>
   <form class="addMovie__form">
-      <input class="input" required type="text" name="titreFilm" placeholder="Saisir un titre de film" >
-      <input class="input" required type="text" name="realisateur" placeholder="Saisir le nom du réalisateur" >
-      <input class="input" required type="text" name="anneeSortie" placeholder="Saisir l'année de sortie">
-      <input class="input" required type="text" name="duree" placeholder="Saisir la durée du film" >
+      <input class="input" required type="text" name="name" placeholder="Saisir un titre de film" >
+      <input class="input" required type="text" name="director" placeholder="Saisir le nom du réalisateur" >
+      <input class="input" required type="text" name="year" placeholder="Saisir l'année de sortie">
+      <input class="input" required type="text" name="length" placeholder="Saisir la durée du film" >
       <input class="input" required type="text" name="description" placeholder="Saisir la description ou le synopsis du film" >
-      <select class="input" name="Selectionner une categories" placeholder="Selectionner une categories">
+      <select class="input" name="category" placeholder="Selectionner une categories">
         <option  value="1">Action</option>
         <option value="2">Comédie</option>
         <option value="3">Drame</option>
@@ -18,11 +18,11 @@
         <option value="9">Fantaisie</option>
         <option value="10">Documentaire</option>
     </select>
-      <input class="input" required type="text" name="imageFilm" placeholder="Saisir le nom du fichier de l'image du film" >
-      <input class="input" required type="text" name="urlTrailer" placeholder="Saisir l' URL du film" >
-      <input class="input" required type="number" name="restrictionAge" placeholder="Saisir un âge de restriction" >
+      <input class="input" required type="text" name="image" placeholder="Saisir le nom du fichier de l'image du film" >
+      <input class="input" required type="text" name="trailer" placeholder="Saisir l' URL du film" >
+      <input class="input" required type="number" name="min_age" placeholder="Saisir un âge de restriction" >
 
-      <input class="addButton" onclick="{{handlerUpdate}}" type="button" value="Update" name="todo">
+      <input class="addButton" onclick="{{handlerAdd}}" type="button" value="Ajouter" name="todo">
 
   </form>
 </div>

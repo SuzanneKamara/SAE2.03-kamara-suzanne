@@ -44,7 +44,7 @@ function getMovieAll(){
  * @return int Un tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
  */
 
-function addMovie($n, $y,$l,$d,$dir,$c, $i,$t){
+function addMovie($n, $y,$l,$d,$dir,$c, $i,$t, $min_age){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
@@ -60,6 +60,7 @@ function addMovie($n, $y,$l,$d,$dir,$c, $i,$t){
     $stmt->bindParam(':idcategory', $c);
     $stmt->bindParam(':image', $i);
     $stmt->bindParam(':trailer', $t);
+    $stmt->bindParam(':min_age', $min_age);
     // Exécute la requête SQL
     $stmt->execute();
     // Récupère les résultats de la requête sous forme d'objets

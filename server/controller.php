@@ -38,18 +38,40 @@ function readAllController(){
 }
 
 function addController(){
+    $todo = $_REQUEST['todo'];
+    if ($todo != 'add'){
+        return false;
+    }
+    $name = $_REQUEST['name'];
+  $year = $_REQUEST['year'];
+  $length = $_REQUEST['length'];
+  $description = $_REQUEST['description'];
+  $director = $_REQUEST['director'];
+  $idcategory = $_REQUEST['idcategory'];
+  $image = $_REQUEST['image'];
+  $trailer = $_REQUEST['trailer'];
+  $min_age = $_REQUEST['min_age'];
+  // Mise à jour du menu à l'aide de la fonction updateMenu décrite dans model.php
+  $ok = addMovie($name, $year, $length, $description, $director, $idcategory,$image,$trailer,$min_age);
+  // $ok est le nombre de ligne affecté par l'opération de mise à jour dans la BDD (voir model.php)
+  if ($ok!=0){
+    return "Le film $name de $director à été ajouté avec succès";
+  }
+  else{
+    return false;
+  }
  
     // PREMIERE VERIFICATION : LES PARAMETRES EXISTENT ET SONT NON VIDES
     // Vérification du paramètre 'semaine' 
     
-    $namemovie = $_REQUEST['todo'];
-    // si on arrive ici c'est que les paramètres existent et sont valides, on peut interroger la BDD
-    // Appel de la fonction getMenu déclarée dans model.php pour extraire de la BDD le menu du jour spécifié
-    if ($namemovie == 'add'){
-        $movie = addMovie($namemovie);
-    }
+    // $namemovie = $_REQUEST['todo'];
+    // // si on arrive ici c'est que les paramètres existent et sont valides, on peut interroger la BDD
+    // // Appel de la fonction getMenu déclarée dans model.php pour extraire de la BDD le menu du jour spécifié
+    // if ($namemovie == 'add'){
+    //     $movie = addMovie($n, $y,$l,$d,$dir,$c, $i,$t);
+    // }
     
-    return $movie;
+    // return $movie;
 }
 
 

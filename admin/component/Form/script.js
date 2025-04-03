@@ -7,10 +7,10 @@ let template = await templateFile.text();
 let Form = {};
 
 
-Form.format = function(){
+Form.format = function(handler){
     
     let html= template;
-    // html = html.replace("{{logs}}", formatHistory());
+    html = html.replace("{{handlerAdd}}", handler);
     return html;
 }
 
