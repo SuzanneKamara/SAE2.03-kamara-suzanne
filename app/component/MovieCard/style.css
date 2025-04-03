@@ -11,7 +11,7 @@
     position: absolute;
     color: var(--color-white);
     z-index: 2;
-    top: 0rem;
+    bottom: 0rem;
     padding: 0.5rem;
   }
 }
@@ -23,10 +23,14 @@
    .moviecard__img{
     width: 100%;
     object-fit: fit;
-    object-position: center;
+    object-position: center center;
     
    }
    @media (screen:64rem) {
     
    }
+}
+#content{
+  display: flex;
+  flex-direction: row;
 }
