@@ -1,0 +1,32 @@
+
+.moviecard{
+  width: 22rem;
+  height: 16rem;
+  overflow: hidden;
+  border-radius: 0.6rem;
+  background:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5));
+  
+  position: relative;
+  .moviecard__title{
+    position: absolute;
+    color: var(--color-white);
+    z-index: 2;
+    top: 0rem;
+    padding: 0.5rem;
+  }
+}
+.moviecard__img-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: -2;
+   .moviecard__img{
+    width: 100%;
+    object-fit: fit;
+    object-position: center;
+    
+   }
+   @media (screen:64rem) {
+    
+   }
+}

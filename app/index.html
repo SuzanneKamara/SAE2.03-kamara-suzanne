@@ -10,10 +10,15 @@
   <body>
     <header id="header"></header>
 
-    <section id="content"></section>
+    <section id="content">
+      <div class="NoMovie">
+        <h1>Il n'y a pas de films pour l'instant</h1>
+      </div>
+    </section>
 
     <script type="module">
       import { NavBar } from "./component/NavBar/script.js";
+      import { MovieCard} from "./component/MovieCard/script.js";
 
       // Controleur
       // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
@@ -28,6 +33,7 @@
 
       C.start = function () {
         V.renderNavBar("C.handlerAbout()");
+        V.renderMovieCard("C.handlerAbout()");
       };
 
       // Vue (contient tout ce qui est relatif à l'affichage)
@@ -43,6 +49,10 @@
       V.renderNavBar = function (hAbout) {
         let header = document.querySelector("#header");
         header.innerHTML = NavBar.format(hAbout);
+      };
+      V.renderMovieCard = function () {
+        let content = document.querySelector("#content");
+        content.innerHTML = MovieCard.format();
       };
 
       C.start(); // Démarre l'application
