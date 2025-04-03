@@ -27,7 +27,7 @@
       window.C = {};
       
       C.getMovie = async function(name){
-      let data = await DataMovie.request( name);
+      let data = await DataMovie.request(name);
       if (data.length == 0){
         data = [
           {name: "Il n'y a pas de film disponible pour l'instant"}
@@ -44,7 +44,7 @@
 
       C.start = function () {
         V.renderNavBar("C.handlerAbout()");
-        V.renderMovieCard("C.handlerAbout()");
+        C.getMovie()
       };
 
       // Vue (contient tout ce qui est relatif à l'affichage)

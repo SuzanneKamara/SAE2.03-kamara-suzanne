@@ -27,7 +27,7 @@ function readController(){
     if ( isset($_REQUEST['nom'])==false || empty($_REQUEST['nom'])==true ){
         return false;
     }
-    
+    $name = $_REQUEST['nom'];
     // si on arrive ici c'est que les paramètres existent et sont valides, on peut interroger la BDD
     // Appel de la fonction getMenu déclarée dans model.php pour extraire de la BDD le menu du jour spécifié
     $movie = getMovie($name);
