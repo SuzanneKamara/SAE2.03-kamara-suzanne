@@ -19,9 +19,7 @@
  *  de faire des opérations sur les données stockées en base de données.
  */
 require("model.php");
-if ( isset($_REQUEST['todo'])==false || empty($_REQUEST['todo'])==true ){
-    return false;
-}
+
 
 function readAllController(){
  
@@ -38,11 +36,8 @@ function readAllController(){
 }
 
 function addController(){
-    $todo = $_REQUEST['todo'];
-    if ($todo != 'add'){
-        return false;
-    }
-    $name = $_REQUEST['name'];
+   
+      $name = $_REQUEST['name'];
   $year = $_REQUEST['year'];
   $length = $_REQUEST['length'];
   $description = $_REQUEST['description'];
@@ -60,18 +55,8 @@ function addController(){
   else{
     return false;
   }
- 
-    // PREMIERE VERIFICATION : LES PARAMETRES EXISTENT ET SONT NON VIDES
-    // Vérification du paramètre 'semaine' 
-    
-    // $namemovie = $_REQUEST['todo'];
-    // // si on arrive ici c'est que les paramètres existent et sont valides, on peut interroger la BDD
-    // // Appel de la fonction getMenu déclarée dans model.php pour extraire de la BDD le menu du jour spécifié
-    // if ($namemovie == 'add'){
-    //     $movie = addMovie($n, $y,$l,$d,$dir,$c, $i,$t);
-    // }
-    
-    // return $movie;
-}
 
+       
+    }
+   
 

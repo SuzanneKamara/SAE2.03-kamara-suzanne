@@ -6,7 +6,9 @@
       <input class="input" required type="text" name="year" placeholder="Saisir l'année de sortie">
       <input class="input" required type="text" name="length" placeholder="Saisir la durée du film" >
       <input class="input" required type="text" name="description" placeholder="Saisir la description ou le synopsis du film" >
-      <select class="input" name="category" placeholder="Selectionner une categories">
+      
+      <select class="input" name="category" >
+        
         <option  value="1">Action</option>
         <option value="2">Comédie</option>
         <option value="3">Drame</option>
@@ -22,7 +24,7 @@
       <input class="input" required type="text" name="trailer" placeholder="Saisir l' URL du film" >
       <input class="input" required type="number" name="min_age" placeholder="Saisir un âge de restriction" >
 
-      <input class="addButton" onclick="{{handlerAdd}}" type="button" value="Ajouter" name="todo">
+      <input class="addButton" onclick=" C.handlerAdd()" type="button" value="add" name="todo">
 
   </form>
 </div>

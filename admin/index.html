@@ -17,17 +17,23 @@
 
       window.C = {};
 
+      
+        
+        
+
       C.start = function () {
         V.renderLog("Démarrage de l'application");
-        V.renderForm(C.handlerAdd);
+        V.renderForm(C.handlerAdd());
+        
       };
 
       
-      C.handlerAdd = async function(fdata){
+      C.handlerAdd = async function(){
             
             // Sélectionne l'élément possédant la classe `.addMenu__form`
             // il s'agit de l'élément <form> du composant NewMenuForm
-            let form = document.querySelector('.addMovie__form');
+             
+            let form = document.querySelector('addMovie__form');
             /* 
                 Il faut comprendre l'instruction "new FormData(form)" ainsi : 
                 "créer un nouvel objet FormData à partir du formulaire form"
@@ -40,11 +46,14 @@
                 HTTP pour être envoyé à un serveur.
             */
             let fd = new FormData(form);
+            console.log(fd);
             // Attend la réponse de la fonction `DataMenu.update(fd)`
             let res = await DataMovie.add(fd);
             // Affiche le résultat de la mise à jour dans le journal
             V.renderLog(res);
+            
         }
+       
       
       window.V = {};
 
