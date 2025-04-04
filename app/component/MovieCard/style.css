@@ -5,7 +5,7 @@
   overflow: hidden;
   border-radius: 0.6rem;
   background:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5));
-  
+  display: flex;
   position: relative;
   .moviecard__title{
     position: absolute;
@@ -16,13 +16,17 @@
   }
 }
 .moviecard__img-container {
+  display: flex;
   width: 100%;
+    height: 100%;
   overflow: hidden;
   position: relative;
+  flex-shrink: 1;
   z-index: -2;
    .moviecard__img{
     width: 100%;
-    object-fit: fit;
+    height: 100%;
+    object-fit: cover;
     object-position: center center;
     
    }
@@ -32,5 +36,7 @@
 }
 #content{
   display: flex;
-  flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5rem;
 }

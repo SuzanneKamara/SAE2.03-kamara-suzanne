@@ -36,10 +36,12 @@ function readAllController(){
 }
 
 function addController(){
-   
+    // Vérification du paramètre 'todo'
+    
+    print("le todo fonctionne");
       $name = $_REQUEST['name'];
   $year = $_REQUEST['year'];
-  $length = $_REQUEST['length'];
+  $movie_length = $_REQUEST['length'];
   $description = $_REQUEST['description'];
   $director = $_REQUEST['director'];
   $idcategory = $_REQUEST['idcategory'];
@@ -47,16 +49,20 @@ function addController(){
   $trailer = $_REQUEST['trailer'];
   $min_age = $_REQUEST['min_age'];
   // Mise à jour du menu à l'aide de la fonction updateMenu décrite dans model.php
-  $ok = addMovie($name, $year, $length, $description, $director, $idcategory,$image,$trailer,$min_age);
+  $ok = addMovie($name, $year, $movie_length, $description, $director, $idcategory, $image, $trailer, $min_age);
   // $ok est le nombre de ligne affecté par l'opération de mise à jour dans la BDD (voir model.php)
+  return $ok;
   if ($ok!=0){
-    return "Le film $name de $director à été ajouté avec succès";
+    print("Le film $name de $director à été ajouté avec succès");
+    
   }
   else{
     return false;
   }
 
-       
+  addMovie("dss", "2222", "22", "ddss" ,"dsds", "2", "dsss", "dsqdqdq", "3");
     }
-   
+
+
+    
 

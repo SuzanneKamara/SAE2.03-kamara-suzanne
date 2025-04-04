@@ -41,6 +41,14 @@ function getMovieAll(){
  *
  * @param string $n La semaine pour laquelle le menu est récupéré.
  * @param string $y Le jour pour lequel le menu est récupéré.
+ * @param string $l Le plat principal pour le jour spécifié.
+ * @param string $d Le dessert pour le jour spécifié.
+ * @param string $dir Le nom du directeur pour le jour spécifié.
+ * @param string $c La catégorie pour le jour spécifié.
+ * @param string $i L'image pour le jour spécifié.
+ * @param string $t La bande-annonce pour le jour spécifié.
+ * @param string $min_age L'âge minimum requis pour le jour spécifié.
+ 
  * @return int Un tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
  */
 
@@ -48,7 +56,10 @@ function addMovie($n, $y,$l,$d,$dir,$c, $i,$t, $min_age){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
-    $sql = "insert into Movie values(':name',':year',':lenght',':description',':director',':id_category',':image',':trailer');" ;
+    // $sql = "insert into 'Movie' values(Null,':name',':year',':lenght',':description',':director',':id_category',':image',':trailer');" ;
+    $sql = "INSERT INTO Movie  
+    (id, name, year, length, description, director, id_category, image, trailer, min_age) 
+    VALUES (NULL, :name, :year, :length, :description, :director, :id_category, :image, :trailer, :min_age);";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
     // Lie le paramètre à la valeur
@@ -57,13 +68,14 @@ function addMovie($n, $y,$l,$d,$dir,$c, $i,$t, $min_age){
     $stmt->bindParam(':length', $l);
     $stmt->bindParam(':description', $d);
     $stmt->bindParam(':director', $dir);
-    $stmt->bindParam(':idcategory', $c);
+    $stmt->bindParam(':id_category', $c);
     $stmt->bindParam(':image', $i);
     $stmt->bindParam(':trailer', $t);
     $stmt->bindParam(':min_age', $min_age);
     // Exécute la requête SQL
     $stmt->execute();
+    
     // Récupère les résultats de la requête sous forme d'objets
-    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
-    return $res; // Retourne les résultats
+    $res = $stmt->rowCount(); 
+    return $res;
 }

@@ -50,20 +50,30 @@ if ( isset($_REQUEST['todo']) ){
 
   // en fonction de la valeur de 'todo', on appelle la fonction de contrôle appropriée
   // peut s'écrire aussi avec des if/else
-  switch($todo){
-    case 'readall':
-      $data = readAllController();
-      break;
-    case 'add':
-      $data = addController();
-        break;
+  // switch($todo){
+  //   case 'readall':
+  //     $data = readAllController();
+  //     break;
+  //   case 'add':
+  //     $data = addController();
+  //       break;
 
-    default: // il y a un paramètre todo mais sa valeur n'est pas reconnue/supportée
-      echo json_encode('[error] Unknown todo value');
-      http_response_code(400); // 400 == "Bad request"
-      exit();
-  }
-
+  //   default: // il y a un paramètre todo mais sa valeur n'est pas reconnue/supportée
+  //     echo json_encode('[error] Unknown todo value');
+  //     http_response_code(400); // 400 == "Bad request"
+  //     exit();
+  // }
+    if ($todo == 'readall'){
+        $data = readAllController();
+    }
+    elseif ($todo == 'add'){
+        $data = addController();
+    }
+    else{
+        echo json_encode('[error] Unknown todo value');
+        http_response_code(400); // 400 == "Bad request"
+        exit();
+    }
   /**
    * A ce stade, on a appelé la fonction de contrôleur appropriée et stocké le résultat dans la variable $data.
    * 
