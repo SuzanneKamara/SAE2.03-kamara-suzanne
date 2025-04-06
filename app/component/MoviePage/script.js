@@ -21,4 +21,3 @@ MoviePage.format = function (movie) {
 
 
 export { MoviePage };
-export { MoviePage };

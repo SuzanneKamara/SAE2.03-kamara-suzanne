@@ -36,8 +36,7 @@
       C.start = function () {
         V.renderNavBar("C.handlerAbout()");
         C.getAllMovies();
-        let b = DataMovie.request("Interstellar");
-        console.log(b);
+        
       };
 
       // Vue (contient tout ce qui est relatif à l'affichage)
@@ -66,8 +65,6 @@
       };
 
       C.getMovie = async function(name){
-        
-
       let data = await DataMovie.request(name);
       if (data.length == 0){
         data = [
