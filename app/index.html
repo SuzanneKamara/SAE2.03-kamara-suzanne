@@ -10,15 +10,14 @@
   <body>
     <header id="header"></header>
 
-    <section id="content">
-      <div class="NoMovie">
-        <h1>Il n'y a pas de films pour l'instant</h1>
-      </div>
-    </section>
+    <section id="content"></section>
 
     <script type="module">
+      // components
       import { NavBar } from "./component/NavBar/script.js";
       import {MovieCard} from "./component/MovieCard/script.js";
+      import {MoviePage} from "./component/MoviePage/script.js";
+      // data
       import {DataMovie} from "./data/dataMovie.js"
 
       // Controleur
@@ -37,6 +36,8 @@
       C.start = function () {
         V.renderNavBar("C.handlerAbout()");
         C.getAllMovies();
+        let b = DataMovie.request("Interstellar");
+        console.log(b);
       };
 
       // Vue (contient tout ce qui est relatif à l'affichage)
@@ -59,8 +60,25 @@
         content.innerHTML = MovieCard.formatMany(movies);
       };
 
+      V.renderMoviePage = function (data) {
+        let content = document.querySelector("#content");
+        content.innerHTML = MoviePage.format(data);
+      };
+
+      C.getMovie = async function(name){
+        
+
+      let data = await DataMovie.request(name);
+      if (data.length == 0){
+        data = [
+          {name: "Il n'y a pas d'information sur le film disponible pour l'instant"}
+        ];
+      }
+      V.renderMoviePage(data);
+    }
+
       C.getAllMovies = async function(){
-      let data = await DataMovie.request();
+      let data = await DataMovie.requestAll();
       if (data.length == 0){
         data = [
           {name: "Il n'y a pas de film disponible pour l'instant"}

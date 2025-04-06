@@ -7,7 +7,7 @@ MovieCard.format = function (movie) {
   let html = template;
   // let url = "../server/images/"+ movie.image;
   html = html.replace("{{img}}", movie.image);
-  html = html.replace("{{title}}", movie.name);
+  html = html.replaceAll("{{title}}", movie.name);
   return html;
 };
 

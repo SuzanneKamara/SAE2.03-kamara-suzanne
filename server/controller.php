@@ -35,6 +35,21 @@ function readAllController(){
     return $movie;
 }
 
+function readController(){
+ 
+  // PREMIERE VERIFICATION : LES PARAMETRES EXISTENT ET SONT NON VIDES
+  // Vérification du paramètre 'semaine' 
+  $todo = $_REQUEST['todo'];
+  $moviename = $_REQUEST['name'];
+  // si on arrive ici c'est que les paramètres existent et sont valides, on peut interroger la BDD
+  // Appel de la fonction getMenu déclarée dans model.php pour extraire de la BDD le menu du jour spécifié
+  if ($todo == 'read'){
+      $movie = getMovie($moviename);
+  }
+  
+  return $movie;
+}
+
 function addController(){
     // Vérification du paramètre 'todo'
     
