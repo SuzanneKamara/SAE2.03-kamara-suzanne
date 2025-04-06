@@ -64,15 +64,16 @@
         content.innerHTML = MoviePage.format(data);
       };
 
-      C.getMovie = async function(name){
-      let data = await DataMovie.request(name);
-      if (data.length == 0){
-        data = [
+      C.getMovie = async function(name) {
+        let data = await DataMovie.request(name);
+        if (!Array.isArray(data) || data.length === 0) {
+          data = [
           {name: "Il n'y a pas d'information sur le film disponible pour l'instant"}
         ];
       }
       V.renderMoviePage(data);
-    }
+      }
+    
 
       C.getAllMovies = async function(){
       let data = await DataMovie.requestAll();

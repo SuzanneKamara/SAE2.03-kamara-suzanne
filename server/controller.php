@@ -75,8 +75,7 @@ function addController(){
     return false;
   }
 
-  addMovie("dss", "2222", "22", "ddss" ,"dsds", "2", "dsss", "dsqdqdq", "3");
-    }
+}
 
 
     

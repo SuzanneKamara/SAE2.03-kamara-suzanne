@@ -6,15 +6,16 @@ let MoviePage = {};
 
 MoviePage.format = function (movie) {
   let html = template; 
-  html = html.replace("{{img}}", movie.image);
-  html = html.replace("{{title}}", movie.name);
-  html = html.replace("{{description}}", movie.description);
-  html = html.replace("{{rating}}", movie.min_age);
-  html = html.replace("{{date}}", movie.year);
-  html = html.replace("{{genre}}", movie.category);
-  html = html.replace("{{duration}}", movie.length);
-  html = html.replace("{{director}}", movie.director);
-  html = html.replace("{{trailer}}", movie.trailer);
+  let data = movie[0];
+  html = html.replace("{{img}}", data.image);
+  html = html.replace("{{title}}", data.name);
+  html = html.replace("{{description}}", data.description);
+  html = html.replace("{{rating}}", data.min_age);
+  html = html.replace("{{date}}", data.year);
+  html = html.replace("{{genre}}", data.category_name);
+  html = html.replace("{{duration}}", data.length);
+  html = html.replace("{{director}}", data.director);
+  html = html.replace("{{trailer}}", data.trailer);
   return html;
 };
 
