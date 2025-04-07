@@ -53,18 +53,18 @@ function readController(){
 function addController(){
     // Vérification du paramètre 'todo'
     
-    print("le todo fonctionne");
+    
       $name = $_REQUEST['name'];
   $year = $_REQUEST['year'];
   $movie_length = $_REQUEST['length'];
   $description = $_REQUEST['description'];
   $director = $_REQUEST['director'];
-  $idcategory = $_REQUEST['idcategory'];
+  $id_category = $_REQUEST['id_category'];
   $image = $_REQUEST['image'];
   $trailer = $_REQUEST['trailer'];
   $min_age = $_REQUEST['min_age'];
   // Mise à jour du menu à l'aide de la fonction updateMenu décrite dans model.php
-  $ok = addMovie($name, $year, $movie_length, $description, $director, $idcategory, $image, $trailer, $min_age);
+  $ok = addMovie($name, $year, $movie_length, $description, $director, $id_category, $image, $trailer, $min_age);
   // $ok est le nombre de ligne affecté par l'opération de mise à jour dans la BDD (voir model.php)
   return $ok;
   if ($ok!=0){
