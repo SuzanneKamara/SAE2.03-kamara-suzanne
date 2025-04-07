@@ -9,10 +9,12 @@
   <body>
     <section id="log"></section>
     <section id="form"></section>
+    <section id="formUser"></section>
 
     <script type="module">
       import { Log } from "./component/Log/script.js";
       import { Form } from "./component/Form/script.js";
+      import { FormUser } from "./component/FormUser/script.js";
       import { DataMovie } from "./data/dataMovie.js";
       
       
@@ -26,6 +28,7 @@
       C.start = function () {
         V.renderLog("Démarrage de l'application");
         V.renderForm();
+        V.renderFormUser();
         
       };
 
@@ -46,6 +49,12 @@
         
       };
 
+      V.renderFormUser = function () {
+        let content = document.querySelector("#formUser");
+        content.innerHTML = FormUser.format();
+        
+      };
+
       C.handlerAdd = async function(){
         
             // il s'agit de l'élément <form> du composant NewMenuForm
@@ -57,6 +66,18 @@
             // Affiche le résultat de la mise à jour dans le journal
             V.renderLog(res);
         }
+
+        C.handlerAddUser = async function(){
+        
+        // il s'agit de l'élément <form> du composant NewMenuForm
+        let form = document.querySelector('.addUser__form');
+       
+        let fd = new FormData(form);
+        // Attend la réponse de la fonction `DataMenu.update(fd)`
+        let res = await DataMovie.adduser(fd);
+        // Affiche le résultat de la mise à jour dans le journal
+        V.renderLog(res);
+    }
             
         
 

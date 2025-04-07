@@ -7,5 +7,6 @@
 @import "../component/NavBar/style.css" layer(components);
 @import "../component/MovieCard/style.css" layer(components); 
 @import "../component/CategorySection/style.css" layer(components); 
+@import "../component/MMoviePage/style.css" layer(components);
 
 

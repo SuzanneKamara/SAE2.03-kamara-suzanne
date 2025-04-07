@@ -9,4 +9,17 @@
   flex-direction: column;
   align-items: baseline;
   
+  
+}
+body{
+  background-color: var(--color-black);
+}
+.category{
+  .category__title{
+    color: var(--color-white);
+    font-size: larger;
+    text-transform: uppercase;
+  }
+  margin-bottom: 1rem;
+  
 }

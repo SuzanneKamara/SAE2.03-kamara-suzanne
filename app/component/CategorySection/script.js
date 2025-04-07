@@ -41,16 +41,15 @@ CategorySection.formatcat = function (cat,movies) {
 
 
 
-CategorySection.formatMany = function (data) {
+CategorySection.formatMany = function(data){
   
   
   let category = '';
   
   let categories= Object.groupBy(data, ({ category_name }) => category_name);
 
-    for (const elt of Object.entries(categories)) {
+    for (const elt of Object.entries(categories)){
         let cat= elt[0];
-       
         let movies= elt[1];
      
         category += CategorySection.formatcat(cat,movies);
