@@ -11,12 +11,15 @@ let templateCategory = await templateCategoryFile.text();
 
 let CategorySection = {};
 
-CategorySection.formatcard = function (movie) {
+CategorySection.format = function (movie,cat) {
   let html = template;
   // let url = "../server/images/"+ movie.image;
-  
-  html = html.replace("{{img}}", movie.image);
-  html = html.replaceAll("{{title}}", movie.name);
+  if (cat == movie.category_name) {
+    
+    html = html.replace("{{img}}", movie.image);
+    html = html.replaceAll("{{title}}", movie.name);
+  }
+ 
   
  
   return html;
@@ -24,45 +27,41 @@ CategorySection.formatcard = function (movie) {
 
 
 
+CategorySection.formatcat = function (cat,movies) {
+  let html = templateCategory;
+  let card='';
+  html = html.replace("{{catname}}", cat);
+  for (const elt of movies){
+    card+=CategorySection.format(elt,cat);
+  }
+  html = html.replace("{{movies}}",card);
+  return html;
 
-CategorySection.format = function (data,cat) {
-  let html2 = templateCategory;
-  // let url = "../server/images/"+ movie.image;
-  html2 = html2.replace("{{catname}}", cat);
-  
-  let card = '';
-    for (const movie of data) {
-      if(movie.category_name==cat){
-        card += CategorySection.formatcard(movie);
-      }
-      html2 = html2.replace("{{movies}}",card);
-      
-    }
-  
-  return html2;
-};
+}
+
 
 
 CategorySection.formatMany = function (data) {
-  let html = '';
+  
+  
+  let category = '';
+  
   let categories= Object.groupBy(data, ({ category_name }) => category_name);
-  console.log(categories);
-    // for (let i=0; i<categories.length; i++) {
-    //   if (categories[i].length==0){
-    //     return "il n'y a pas de film dans cette categorie pour l'instant";
-    //   }
-      
-    //     html += CategorySection.format(data, categories[i]);
-    // }
-    // 
+
     for (const elt of Object.entries(categories)) {
-      for( const movie of elt){
-        console.log(movie);
-        html +=CategorySection.format(movie,elt[0])
+        let cat= elt[0];
+       
+        let movies= elt[1];
+     
+        category += CategorySection.formatcat(cat,movies);
+        }
+        return category;
+        
       }
+       
     
-    } 
-    return html;  
-};
+    
+    
+;
 
 export { CategorySection };

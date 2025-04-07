@@ -13,6 +13,7 @@
     z-index: 2;
     bottom: 0rem;
     padding: 0.5rem;
+    left:0;
   }
 }
 .moviecard__img-container {
