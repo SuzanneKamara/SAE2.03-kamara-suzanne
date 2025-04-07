@@ -15,7 +15,8 @@
     <script type="module">
       // components
       import { NavBar } from "./component/NavBar/script.js";
-      import {MovieCard} from "./component/MovieCard/script.js";
+      // import {MovieCard} from "./component/MovieCard/script.js";
+      import { CategorySection} from "./component/CategorySection/script.js"
       import {MoviePage} from "./component/MoviePage/script.js";
       // data
       import {DataMovie} from "./data/dataMovie.js"
@@ -58,12 +59,9 @@
       //   let content = document.querySelector("#content");
       //   content.innerHTML = MovieCard.formatMany(movies);
       // };
-      V.renderMoviesCat = function (movies) {
-        let content = document.querySelector("#content");
-        content.innerHTML = CategorySection.formatMany(movies);
-      };
+     
 
-
+      // rendu des pages descritive du film
       V.renderMoviePage = function (data) {
         let content = document.querySelector("#content");
         content.innerHTML = MoviePage.format(data);
@@ -78,7 +76,13 @@
       }
       V.renderMoviePage(data);
       }
-    
+
+
+    // rendu des films par categories
+      V.renderMoviesCat = function (movies) {
+        let content = document.querySelector("#content");
+        content.innerHTML = CategorySection.formatMany(movies);
+      };
 
       C.getAllCategories = async function(){
       let data = await DataMovie.requestAllCat();

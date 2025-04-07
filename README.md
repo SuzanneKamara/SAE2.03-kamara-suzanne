@@ -22,3 +22,10 @@ commit :
 -   git push
   
 Si tout va bien, vous devez retrouver sur votre espace Github la modification que vous venez de réaliser.
+
+
+
+
+
+
+selectionner directement les options depuis la table category
