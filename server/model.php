@@ -59,6 +59,30 @@ function getMovie($movie){
     return $res; // Retourne les résultats
 }
 
+/**
+ * Récupère le menu pour un jour spécifique dans la base de données.
+ *
+ * @param string $category La semaine pour laquelle le menu est récupéré.
+
+ * @return int Un tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
+ */
+function getAllCategory(){
+    // Connexion à la base de données
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    // Requête SQL pour récupérer le menu avec des paramètres
+    $sql = "SELECT Movie.name, Movie.year, Movie.length, Movie.description, Movie.director, Movie.id_category,Movie.image,Movie.trailer, Movie.min_age, Category.name AS 'category_name' 
+    FROM `Movie` left join Category on Category.id = Movie.id_category WHERE 1;";
+    // Prépare la requête SQL
+    $stmt = $cnx->prepare($sql);
+    // Lie le paramètre à la valeur
+    // Exécute la requête SQL
+    $stmt->execute();
+    // Récupère les résultats de la requête sous forme d'objets
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $res; // Retourne les résultats
+}
+
+
 
 /**
  * Récupère le menu pour un jour spécifique dans la base de données.

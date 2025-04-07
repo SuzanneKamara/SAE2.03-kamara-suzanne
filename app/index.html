@@ -35,7 +35,7 @@
 
       C.start = function () {
         V.renderNavBar("C.handlerAbout()");
-        C.getAllMovies();
+        C.getAllCategories();
         
       };
 
@@ -54,10 +54,15 @@
         header.innerHTML = NavBar.format(hAbout);
       };
 
-      V.renderMovieCard = function (movies) {
+      // V.renderMovieCard = function (movies) {
+      //   let content = document.querySelector("#content");
+      //   content.innerHTML = MovieCard.formatMany(movies);
+      // };
+      V.renderMoviesCat = function (movies) {
         let content = document.querySelector("#content");
-        content.innerHTML = MovieCard.formatMany(movies);
+        content.innerHTML = CategorySection.formatMany(movies);
       };
+
 
       V.renderMoviePage = function (data) {
         let content = document.querySelector("#content");
@@ -75,15 +80,24 @@
       }
     
 
-      C.getAllMovies = async function(){
-      let data = await DataMovie.requestAll();
+      C.getAllCategories = async function(){
+      let data = await DataMovie.requestAllCat();
       if (data.length == 0){
         data = [
           {name: "Il n'y a pas de film disponible pour l'instant"}
         ];
       }
-      V.renderMovieCard(data);
+      V.renderMoviesCat(data);
     }
+    // C.getAllMovies = async function(){
+    //   let data = await DataMovie.requestAll();
+    //   if (data.length == 0){
+    //     data = [
+    //       {name: "Il n'y a pas de film disponible pour l'instant"}
+    //     ];
+    //   }
+    //   V.renderMovieCard(data);
+    // }
 
       C.start(); // Démarre l'application
     </script>
