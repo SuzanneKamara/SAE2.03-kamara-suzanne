@@ -77,6 +77,28 @@ function addController(){
 
 }
 
+function addUserController(){
+  // Vérification du paramètre 'todo'
+  
+  
+    $name = $_REQUEST['name'];
+$profile_pic = $_REQUEST['profile_pic'];
+$restriction_age = $_REQUEST['restriction_age'];
+
+// Mise à jour du menu à l'aide de la fonction updateMenu décrite dans model.php
+$ok = addUser($name, $profile_pic, $restriction_age);
+// $ok est le nombre de ligne affecté par l'opération de mise à jour dans la BDD (voir model.php)
+return $ok;
+if ($ok!=0){
+  print("L'utilisateur $name de $director à été ajouté avec succès");
+  
+}
+else{
+  return false;
+}
+
+}
+
 function readAllCatController(){
  
   // PREMIERE VERIFICATION : LES PARAMETRES EXISTENT ET SONT NON VIDES

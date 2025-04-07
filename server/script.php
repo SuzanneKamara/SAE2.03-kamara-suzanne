@@ -75,6 +75,9 @@ if ( isset($_REQUEST['todo']) ){
   elseif ($todo == 'readcategory'){
     $data = readAllCatController();
 }
+elseif ($todo == 'adduser'){
+  $data = addUserController();
+}
     else{
         echo json_encode('[error] Unknown todo value');
         http_response_code(400); // 400 == "Bad request"

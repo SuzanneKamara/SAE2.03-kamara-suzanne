@@ -126,4 +126,37 @@ function addMovie($n, $y,$l,$d,$dir,$c, $i,$t, $min_age){
     // Récupère les résultats de la requête sous forme d'objets
     $res = $stmt->rowCount(); 
     return $res;
+
+}
+
+/**
+ * Récupère le menu pour un jour spécifique dans la base de données.
+ *
+ * @param string $n La semaine pour laquelle le menu est récupéré.
+ * @param string $pp Le jour pour lequel le menu est récupéré.
+ * @param string $ Le plat principal pour le jour spécifié.
+ * @return int Un tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
+ */
+
+ function addUser($n, $pp,$r){
+    // Connexion à la base de données
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    // Requête SQL pour récupérer le menu avec des paramètres
+    // $sql = "insert into 'Movie' values(Null,':name',':year',':lenght',':description',':director',':id_category',':image',':trailer');" ;
+    $sql = "INSERT INTO User  
+    (id, name, profile_pic, restriction_age) 
+    VALUES (NULL, :name, :profile_pic, :restriction_age);";
+    // Prépare la requête SQL
+    $stmt = $cnx->prepare($sql);
+    // Lie le paramètre à la valeur
+    $stmt->bindParam(':name', $n);
+    $stmt->bindParam(':profile_pic', $pp);
+    $stmt->bindParam(':restriction_age', $r);
+    
+    // Exécute la requête SQL
+    $stmt->execute();
+    
+    // Récupère les résultats de la requête sous forme d'objets
+    $res = $stmt->rowCount(); 
+    return $res;
 }
