@@ -31,6 +31,7 @@
         
         C.getAllMovies();
         C.handlerUser();
+        C.getUserAge();
         
       };
       
@@ -90,7 +91,14 @@
       // }
       // V.renderMoviePage(data);
       // }
-
+    C.getUserAge= function  () {
+      let age = document.getElementById("user");
+      
+      // let r = age.restriction_age;
+      console.log(age.value);
+      let res = C.getAllMovies(age.value);
+      return res
+    };
 
     // rendu des films par categories
       V.renderMovies = function (movies) {
@@ -98,9 +106,11 @@
         content.innerHTML = CategorySection.formatMany(movies);
       };
 
-      C.getAllMovies = async function(){
-        // let age = document.getElementById("user").selectedOptions;
-      let data = await DataMovie.requestAll(21);
+
+
+      C.getAllMovies = async function(age){
+        
+      let data = await DataMovie.requestAll(age);
       // if (data.length == 0){
       //   data = [
       //     {name: "Il n'y a pas de film disponible pour l'instant"}

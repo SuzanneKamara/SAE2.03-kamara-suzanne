@@ -85,9 +85,10 @@ function readAllController(){
  
   // PREMIERE VERIFICATION : LES PARAMETRES EXISTENT ET SONT NON VIDES
   // Vérification du paramètre 'semaine' 
-  $age = $_REQUEST['restriction_age'];
+  $todo = $_REQUEST['todo'];
+  $age = $_REQUEST['age'];
   
-  $catname = $_REQUEST['id_category'];
+  // $catname = $_REQUEST['id_category'];
   // si on arrive ici c'est que les paramètres existent et sont valides, on peut interroger la BDD
   // Appel de la fonction getMenu déclarée dans model.php pour extraire de la BDD le menu du jour spécifié
   if ($todo == 'readall'){
@@ -95,6 +96,7 @@ function readAllController(){
   }
   
   return $movies;
+  
 }
 
 

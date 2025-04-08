@@ -22,7 +22,7 @@ NavBar.format = function (data) {
 NavBar.formatOp = function (user){
   
   let htmlOp= templateOp;
-  htmlOp=htmlOp.replace('{{value}}',user);
+  htmlOp=htmlOp.replace('{{value}}',user.restriction_age);
   
   htmlOp=htmlOp.replace('{{placeholder}}',user.name);
   return htmlOp

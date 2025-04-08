@@ -62,7 +62,7 @@ function getMovie($movie){
 }
 
 /**
- * @param string $age La semaine pour laquelle le menu est récupéré.
+ * @param int $age La semaine pour laquelle le menu est récupéré.
 
  * @return int Un tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
  */
@@ -71,7 +71,7 @@ function getAllMovies($age){
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
     $sql = "SELECT Movie.name, Movie.year, Movie.length, Movie.description, Movie.director,Movie.image,Movie.trailer, Movie.min_age, Category.name AS 'category_name' 
-    FROM `Movie` left join Category on Category.id = Movie.id_category WHERE Movie.min_age=:age;";
+    FROM `Movie` left join Category on Category.id = Movie.id_category   WHERE   Movie.min_age<:age;";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
     $stmt->bindParam(':age', $age);
