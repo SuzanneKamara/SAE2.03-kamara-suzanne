@@ -8,6 +8,7 @@
   </head>
 
   <body>
+
     <header id="header"></header>
 
     <section id="content" class="font-sans"></section>
@@ -19,26 +20,39 @@
       import { CategorySection} from "./component/CategorySection/script.js"
       import {MoviePage} from "./component/MoviePage/script.js";
       // data
-      import {DataMovie} from "./data/dataMovie.js"
+      import {DataMovie} from "./data/dataMovie.js";
+      import {DataProfile} from "./data/dataProfile.js";
 
       // Controleur
       // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
       // Une fois l'application terminée, on pourrait remettre let C.
       window.C = {};
-      
-      
-
-      C.handlerAbout = function () {
-        alert(
-          "Ceci est une base de projet pour la SAE2.03 édition 2025. Bonne chance !"
-        );
-      };
-
       C.start = function () {
-        V.renderNavBar("C.handlerAbout()");
-        C.getAllCategories();
+        
+        C.getAllMovies();
+        C.handlerUser();
         
       };
+      
+
+      C.handlerUser = async function () {
+        // alert(
+        //   "Ceci est une base de projet pour la SAE2.03 édition 2025. Bonne chance !"
+        // );
+        // let age = document.getElementById("user");
+
+        let data = await DataProfile.read();
+      //   if (!Array.isArray(data) || data.length === 0) {
+      //     data = [
+      //     {name: "Il n'y a pas d'utilisateurs"}
+      //   ];
+      // }
+      V.renderNavBar(data);
+       return data;
+        
+      };
+
+      
 
       // Vue (contient tout ce qui est relatif à l'affichage)
       window.V = {};
@@ -50,9 +64,9 @@
        * Elle sélectionne l'élément HTML avec l'ID "header" et y insère le contenu
        * formaté par le composant NavBar.
        */
-      V.renderNavBar = function (hAbout) {
+      V.renderNavBar = function (data) {
         let header = document.querySelector("#header");
-        header.innerHTML = NavBar.format(hAbout);
+        header.innerHTML = NavBar.format(data);
       };
 
       // V.renderMovieCard = function (movies) {
@@ -67,31 +81,32 @@
         content.innerHTML = MoviePage.format(data);
       };
 
-      C.getMovie = async function(name) {
-        let data = await DataMovie.request(name);
-        if (!Array.isArray(data) || data.length === 0) {
-          data = [
-          {name: "Il n'y a pas d'information sur le film disponible pour l'instant"}
-        ];
-      }
-      V.renderMoviePage(data);
-      }
+      // C.getMovie = async function(name) {
+      //   let data = await DataMovie.request(name);
+      //   if (!Array.isArray(data) || data.length === 0) {
+      //     data = [
+      //     {name: "Il n'y a pas d'information sur le film disponible pour l'instant"}
+      //   ];
+      // }
+      // V.renderMoviePage(data);
+      // }
 
 
     // rendu des films par categories
-      V.renderMoviesCat = function (movies) {
+      V.renderMovies = function (movies) {
         let content = document.querySelector("#content");
         content.innerHTML = CategorySection.formatMany(movies);
       };
 
-      C.getAllCategories = async function(){
-      let data = await DataMovie.requestAllCat();
-      if (data.length == 0){
-        data = [
-          {name: "Il n'y a pas de film disponible pour l'instant"}
-        ];
-      }
-      V.renderMoviesCat(data);
+      C.getAllMovies = async function(){
+        // let age = document.getElementById("user").selectedOptions;
+      let data = await DataMovie.requestAll(21);
+      // if (data.length == 0){
+      //   data = [
+      //     {name: "Il n'y a pas de film disponible pour l'instant"}
+      //   ];
+      // }
+      V.renderMovies(data);
     }
     // C.getAllMovies = async function(){
     //   let data = await DataMovie.requestAll();

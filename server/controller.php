@@ -21,19 +21,19 @@
 require("model.php");
 
 
-function readAllController(){
+// function readAllController(){
  
-    // PREMIERE VERIFICATION : LES PARAMETRES EXISTENT ET SONT NON VIDES
-    // Vérification du paramètre 'semaine' 
-    $namemovie = $_REQUEST['todo'];
-    // si on arrive ici c'est que les paramètres existent et sont valides, on peut interroger la BDD
-    // Appel de la fonction getMenu déclarée dans model.php pour extraire de la BDD le menu du jour spécifié
-    if ($namemovie == 'readall'){
-        $movie = getMovieAll($namemovie);
-    }
+//     // PREMIERE VERIFICATION : LES PARAMETRES EXISTENT ET SONT NON VIDES
+//     // Vérification du paramètre 'semaine' 
+//     $namemovie = $_REQUEST['todo'];
+//     // si on arrive ici c'est que les paramètres existent et sont valides, on peut interroger la BDD
+//     // Appel de la fonction getMenu déclarée dans model.php pour extraire de la BDD le menu du jour spécifié
+//     if ($namemovie == 'readall'){
+//         $movie = getMovieAll($namemovie);
+//     }
     
-    return $movie;
-}
+//     return $movie;
+// }
 
 function readController(){
  
@@ -77,6 +77,29 @@ function addController(){
 
 }
 
+
+
+
+
+function readAllController(){
+ 
+  // PREMIERE VERIFICATION : LES PARAMETRES EXISTENT ET SONT NON VIDES
+  // Vérification du paramètre 'semaine' 
+  $age = $_REQUEST['restriction_age'];
+  
+  $catname = $_REQUEST['id_category'];
+  // si on arrive ici c'est que les paramètres existent et sont valides, on peut interroger la BDD
+  // Appel de la fonction getMenu déclarée dans model.php pour extraire de la BDD le menu du jour spécifié
+  if ($todo == 'readall'){
+      $movies = getAllMovies($age);
+  }
+  
+  return $movies;
+}
+
+
+// user
+
 function addUserController(){
   // Vérification du paramètre 'todo'
   
@@ -99,21 +122,15 @@ else{
 
 }
 
-function readAllCatController(){
- 
-  // PREMIERE VERIFICATION : LES PARAMETRES EXISTENT ET SONT NON VIDES
-  // Vérification du paramètre 'semaine' 
-  $todo = $_REQUEST['todo'];
-  $catname = $_REQUEST['id_category'];
-  // si on arrive ici c'est que les paramètres existent et sont valides, on peut interroger la BDD
-  // Appel de la fonction getMenu déclarée dans model.php pour extraire de la BDD le menu du jour spécifié
-  if ($todo == 'readcategory'){
-      $movies = getAllCategory();
-  }
-  
-  return $movies;
-}
+function readUserController(){
+  // Vérification du paramètre 'todo'
 
+// Mise à jour du menu à l'aide de la fonction updateMenu décrite dans model.php
+$ok = readUser();
+// $ok est le nombre de ligne affecté par l'opération de mise à jour dans la BDD (voir model.php)
+return $ok;
+
+}
 
     
 

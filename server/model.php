@@ -20,21 +20,23 @@ define("DBPWD", "kamara4");
 
 
 
-function getMovieAll(){
-    // Connexion à la base de données
-    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
-    // Requête SQL pour récupérer le menu avec des paramètres
-    $sql = "select id,name,image from Movie WHERE 1;";
-    // Prépare la requête SQL
-    $stmt = $cnx->prepare($sql);
-    // Lie le paramètre à la valeur
-    // $stmt->bindParam(':name', $n);
-    // Exécute la requête SQL
-    $stmt->execute();
-    // Récupère les résultats de la requête sous forme d'objets
-    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
-    return $res; // Retourne les résultats
-}
+// function getMovieAll(){
+//     // Connexion à la base de données
+//     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+//     // Requête SQL pour récupérer le menu avec des paramètres
+//     $sql = "select id,name,image from Movie WHERE 1;";
+//     // Prépare la requête SQL
+//     $stmt = $cnx->prepare($sql);
+//     // Lie le paramètre à la valeur
+//     // $stmt->bindParam(':name', $n);
+//     // Exécute la requête SQL
+//     $stmt->execute();
+//     // Récupère les résultats de la requête sous forme d'objets
+//     $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+//     return $res; // Retourne les résultats
+// }
+
+
 /**
  * Récupère le menu pour un jour spécifique dans la base de données.
  *
@@ -60,20 +62,19 @@ function getMovie($movie){
 }
 
 /**
- * Récupère le menu pour un jour spécifique dans la base de données.
- *
- * @param string $category La semaine pour laquelle le menu est récupéré.
+ * @param string $age La semaine pour laquelle le menu est récupéré.
 
  * @return int Un tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
  */
-function getAllCategory(){
+function getAllMovies($age){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
     $sql = "SELECT Movie.name, Movie.year, Movie.length, Movie.description, Movie.director,Movie.image,Movie.trailer, Movie.min_age, Category.name AS 'category_name' 
-    FROM `Movie` left join Category on Category.id = Movie.id_category WHERE 1;";
+    FROM `Movie` left join Category on Category.id = Movie.id_category WHERE Movie.min_age=:age;";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':age', $age);
     // Lie le paramètre à la valeur
     // Exécute la requête SQL
     $stmt->execute();
@@ -138,7 +139,25 @@ function addMovie($n, $y,$l,$d,$dir,$c, $i,$t, $min_age){
  * @return int Un tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
  */
 
- function addUser($n, $pp,$r){
+ 
+// user
+function readUser(){
+    // Connexion à la base de données
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    // Requête SQL pour récupérer le menu avec des paramètres
+    $sql = "select * from User WHERE 1;";
+    // Prépare la requête SQL
+    $stmt = $cnx->prepare($sql);
+    // Lie le paramètre à la valeur
+    // $stmt->bindParam(':name', $n);
+    // Exécute la requête SQL
+    $stmt->execute();
+    // Récupère les résultats de la requête sous forme d'objets
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $res; // Retourne les résultats
+}
+
+function addUser($n, $pp,$r){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres

@@ -50,39 +50,50 @@ if ( isset($_REQUEST['todo']) ){
 
   // en fonction de la valeur de 'todo', on appelle la fonction de contrôle appropriée
   // peut s'écrire aussi avec des if/else
-  // switch($todo){
-  //   case 'readall':
-  //     $data = readAllController();
-  //     break;
-  //   case 'add':
-  //     $data = addController();
-  //       break;
-
-  //   default: // il y a un paramètre todo mais sa valeur n'est pas reconnue/supportée
-  //     echo json_encode('[error] Unknown todo value');
-  //     http_response_code(400); // 400 == "Bad request"
-  //     exit();
-  // }
-    if ($todo == 'readall'){
-        $data = readAllController();
-    }
-    elseif ($todo == 'add'){
-        $data = addController();
-    }
-    elseif ($todo == 'read'){
-        $data = readController();
+  switch($todo){
+    case 'readall':
+      $data = readAllController();
+      break;
+    case 'add':
+      $data = addController();
+        break;
+    case 'read':
+          $data = readController();
+            break;
+    case 'adduser':
+      $data = addUserController();
+        break;
+    case 'readuser':
+      $data = readUserController();
+        break;
+    default: // il y a un paramètre todo mais sa valeur n'est pas reconnue/supportée
+      echo json_encode('[error] Unknown todo value');
+      http_response_code(400); // 400 == "Bad request"
+      exit();
   }
-  elseif ($todo == 'readcategory'){
-    $data = readAllCatController();
-}
-elseif ($todo == 'adduser'){
-  $data = addUserController();
-}
-    else{
-        echo json_encode('[error] Unknown todo value');
-        http_response_code(400); // 400 == "Bad request"
-        exit();
-    }
+//     if ($todo == 'readall'){
+//         $data = readAllController();
+//     }
+//     elseif ($todo == 'add'){
+//         $data = addController();
+//     }
+//     elseif ($todo == 'read'){
+//         $data = readController();
+//   }
+//   elseif ($todo == 'readcategory'){
+//     $data = readAllCatController();
+// }
+// elseif ($todo == 'adduser'){
+//   $data = addUserController();
+// }
+// elseif ($todo == 'readuser'){
+//   $data = readUserController();
+// }
+//     else{
+//         echo json_encode('[error] Unknown todo value');
+//         http_response_code(400); // 400 == "Bad request"
+//         exit();
+//     }
   /**
    * A ce stade, on a appelé la fonction de contrôleur appropriée et stocké le résultat dans la variable $data.
    * 
