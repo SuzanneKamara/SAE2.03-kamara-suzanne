@@ -115,7 +115,7 @@ $ok = addUser($name, $profile_pic, $restriction_age);
 // $ok est le nombre de ligne affecté par l'opération de mise à jour dans la BDD (voir model.php)
 return $ok;
 if ($ok!=0){
-  print("L'utilisateur $name de $director à été ajouté avec succès");
+  return "Le profil $name a été ajouté avec succès";
   
 }
 else{
@@ -131,6 +131,28 @@ function readUserController(){
 $ok = readUser();
 // $ok est le nombre de ligne affecté par l'opération de mise à jour dans la BDD (voir model.php)
 return $ok;
+
+}
+
+function updUserController(){
+  // Vérification du paramètre 'todo'
+  
+    $id = $_REQUEST["id"];
+    $name = $_REQUEST["name"];
+    $profile_pic = $_REQUEST["profile_pic"];
+    $restriction_age = $_REQUEST["restriction_age"];
+
+// Mise à jour du menu à l'aide de la fonction updateMenu décrite dans model.php
+$ok = updUser($id,$name, $profile_pic, $restriction_age);
+// $ok est le nombre de ligne affecté par l'opération de mise à jour dans la BDD (voir model.php)
+return $ok;
+if ($ok!=0){
+  return "Le profil a bien été modifié avec succès";
+  
+}
+else{
+  return false;
+}
 
 }
 

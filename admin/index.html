@@ -12,11 +12,14 @@
     <section id="formUser"></section>
 
     <script type="module">
+      // component
       import { Log } from "./component/Log/script.js";
       import { Form } from "./component/Form/script.js";
       import { FormUser } from "./component/FormUser/script.js";
+
+      // data
       import { DataMovie } from "./data/dataMovie.js";
-      
+      import { DataUser } from "./data/dataUser.js";
       
 
       window.C = {};
@@ -27,6 +30,7 @@
 
       C.start = function () {
         V.renderLog("Démarrage de l'application");
+        V.renderLog("Bienvenue dans le backoffice")
         V.renderForm();
         V.renderFormUser();
         
@@ -49,11 +53,23 @@
         
       };
 
-      V.renderFormUser = function () {
+      V.renderFormUser = async function (data) {
+        
         let content = document.querySelector("#formUser");
-        content.innerHTML = FormUser.format();
+        content.innerHTML = FormUser.format(data);
         
       };
+      
+      C.getAllMovies = async function(){
+        
+        let data = await DataUser.read();
+        // if (data.length == 0){
+        //   data = [
+        //     {name: "Il n'y a pas de film disponible pour l'instant"}
+        //   ];
+        // }
+        V.renderFormUser(data);
+      }
 
       C.handlerAdd = async function(){
         
@@ -74,7 +90,17 @@
        
         let fd = new FormData(form);
         // Attend la réponse de la fonction `DataMenu.update(fd)`
-        let res = await DataMovie.adduser(fd);
+        let r = await DataUser.read();
+        let res = await DataUser.adduser(fd);
+        
+        for (elt of r){
+          for (elem of res){
+            if (elt ==r){
+              DataUser.update();
+            }
+          }
+        }
+        
         // Affiche le résultat de la mise à jour dans le journal
         V.renderLog(res);
     }
