@@ -1,12 +1,26 @@
+
 <div class="addUser">
-  <h4 class="addUser__title"># Ajouter ou modifier un utilisateur</h4>
+  <h4 class="addUser__title"># Ajouter un utilisateur</h4>
   <form class="addUser__form" action="" method="post">
-    <select name="id" id="id">
-      {{optuser}}
-    </select>
+    
     <input class="input" required type="text" name="name" placeholder="Saisir le nom de l'utilisateur">
     <input class="input" required type="text" name="profile_pic" placeholder="saisir le nom du fichier de la photo de profil">
-    <input class="input" required type="text" name="restriction_age" placeholder="Saisir l'âge de restriction de l'utilisateur">
+    <input class="input" required type="number" name="restriction_age" placeholder="Saisir l'âge de restriction de l'utilisateur">
     <input class="addButton" onclick=" C.handlerAddUser()" type="submit" value="adduser" name="todo">
   </form>
 </div>
+<div class="upduser">
+  <h4>Ajouter un utilisateur</h4>
+  <form action="" method="post">
+    <select onchange="C.getUserId()" required name="id" id="id" >
+      <option value="0" selected >Sélectionner un profil</option>
+      {{optuser}}
+    </select>
+    <input class="input" required id="nameuser" type="text" name="name" placeholder="Saisir le nom de l'utilisateur">
+    <input class="input" required id="ppuser" type="text" name="profile_pic" placeholder="saisir le nom du fichier de la photo de profil">
+    <input class="input" required id="rauser" type="number" name="restriction_age" placeholder="Saisir l'âge de restriction de l'utilisateur">
+    <input class="addButton" onclick=" C.handlerUpdUser()" type="submit" value="upduser" name="todo">
+  </form>
+  </div>
+
+  <!-- onchange="C.handlerReadUser()" -->

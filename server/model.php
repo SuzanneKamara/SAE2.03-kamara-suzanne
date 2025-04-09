@@ -186,9 +186,9 @@ function updUser($id,$name,$img,$age){
     // Requête SQL pour récupérer le menu avec des paramètres
     // $sql = "REPLACE INTO Repas (name, profile_pic, restriction_age) 
     //         VALUES (:name, :img, :age) ;";
-    $sql="UPDATE User
-    SET name = :name, profile_pic = :img, crestriction_age = :age'
-    WHERE id=$id;";
+    $sql="UPDATE User 
+    SET name = :name, profile_pic = :img, restriction_age = :age
+    WHERE id=:id;";
     
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
@@ -204,23 +204,18 @@ function updUser($id,$name,$img,$age){
     $res = $stmt->rowCount(); 
     return $res;
 }
-// function updateMenu($w, $j, $e, $p, $d){
-//     // Connexion à la base de données
-//     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD); 
-//     // Requête SQL de mise à jour du menu avec des paramètres
-//     $sql = "REPLACE INTO Repas (semaine, jour, entree, plat, dessert) 
-//             VALUES (:semaine, :jour, :entree, :plat, :dessert)";
-//     // Prépare la requête SQL
-//     $stmt = $cnx->prepare($sql);
-//     // Lie les paramètres aux valeurs
-//     $stmt->bindParam(':entree', $e);
-//     $stmt->bindParam(':plat', $p);
-//     $stmt->bindParam(':dessert', $d);
-//     $stmt->bindParam(':jour', $j);
-//     $stmt->bindParam(':semaine', $w);
-//     // Exécute la requête SQL
-//     $stmt->execute();
-//     // Récupère le nombre de lignes affectées par la requête
-//     $res = $stmt->rowCount(); 
-//     return $res; // Retourne le nombre de lignes affectées
-// }
+function readSingUser($id){
+    // Connexion à la base de données
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    // Requête SQL pour récupérer le menu avec des paramètres
+    $sql = "select * from User WHERE id=:id;";
+    // Prépare la requête SQL
+    $stmt = $cnx->prepare($sql);
+    // Lie le paramètre à la valeur
+    $stmt->bindParam(':id', $id);
+    // Exécute la requête SQL
+    $stmt->execute();
+    // Récupère les résultats de la requête sous forme d'objets
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $res; // Retourne les résultats
+}

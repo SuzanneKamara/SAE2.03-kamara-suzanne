@@ -32,7 +32,8 @@
         V.renderLog("Démarrage de l'application");
         V.renderLog("Bienvenue dans le backoffice")
         V.renderForm();
-        V.renderFormUser();
+        C.handlerReadUser()
+        
         
       };
 
@@ -59,17 +60,7 @@
         content.innerHTML = FormUser.format(data);
         
       };
-      
-      C.getAllMovies = async function(){
-        
-        let data = await DataUser.read();
-        // if (data.length == 0){
-        //   data = [
-        //     {name: "Il n'y a pas de film disponible pour l'instant"}
-        //   ];
-        // }
-        V.renderFormUser(data);
-      }
+    
 
       C.handlerAdd = async function(){
         
@@ -90,22 +81,75 @@
        
         let fd = new FormData(form);
         // Attend la réponse de la fonction `DataMenu.update(fd)`
-        let r = await DataUser.read();
+        // let read = await DataUser.read();
         let res = await DataUser.adduser(fd);
-        
-        for (elt of r){
-          for (elem of res){
-            if (elt ==r){
-              DataUser.update();
+        let read= await DataUser.readAll()
+       
+        for (let elt of read){
+          for (let elem of res){
+            if (elt.name == elem.name){
+              return null;
+              V.renderLog("Il n'est pas possible d'ajouter le profile "+elt.name)
             }
           }
         }
+        // let res=add;
+       
+        // for (elt of read){
+        //   for (elem of add){
+        //     if (elt ==elem){
+        //       res= DataUser.update();
+        //       console.log(res);
+              
+        //     }
+        //   }
+        // }
+        return res;
+        
+        // Affiche le résultat de la mise à jour dans le journal
+        V.renderLog(res);
+    }
+    C.getUserId= function(){
+      let id = document.querySelector('#id');
+      
+      C.handlerReadUser(id.value);
+      console.log(C.handlerReadUser(id.value));
+      
+    }
+
+    C.handlerUpdUser = async function(){
+        
+        // il s'agit de l'élément <form> du composant NewMenuForm
+        let form = document.querySelector('.updUser__form');
+       
+        let fd = new FormData(form);
+        // Attend la réponse de la fonction `DataMenu.update(fd)`
+        // let read = await DataUser.read();
+        let userId= document.querySelector("#id").value;
+        let dat = DataUser.update(fd,userId);
+        console.log(userId);
+        // let res = await DataUser.upduser(fd,userId);
+        
+        return res;
         
         // Affiche le résultat de la mise à jour dans le journal
         V.renderLog(res);
     }
             
-        
+    C.handlerReadUser= async function  (id) {
+      
+      let data = await DataUser.read();
+      
+      // let r = age.restriction_age;
+      V.renderFormUser(data);
+      
+      
+      let datauser= await DataUser.readUser(id);
+      
+      return datauser;
+    };
+    
+    
 
       C.start();
     </script>

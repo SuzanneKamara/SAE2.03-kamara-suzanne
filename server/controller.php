@@ -124,6 +124,20 @@ else{
 
 }
 
+function readSingUserController(){
+  // Vérification du paramètre 'todo'
+  
+  
+    $id = $_REQUEST['id'];
+
+
+// Mise à jour du menu à l'aide de la fonction updateMenu décrite dans model.php
+$ok = readSingUser($id);
+// $ok est le nombre de ligne affecté par l'opération de mise à jour dans la BDD (voir model.php)
+
+return $ok;
+}
+
 function readUserController(){
   // Vérification du paramètre 'todo'
 

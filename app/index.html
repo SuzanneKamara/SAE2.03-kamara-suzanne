@@ -42,14 +42,12 @@
         // );
         // let age = document.getElementById("user");
 
-        let data = await DataProfile.read();
-      //   if (!Array.isArray(data) || data.length === 0) {
-      //     data = [
-      //     {name: "Il n'y a pas d'utilisateurs"}
-      //   ];
-      // }
+        let data = await DataProfile.read(); 
+        
       V.renderNavBar(data);
-       return data;
+      return data;
+     
+       
         
       };
 
@@ -95,7 +93,7 @@
       let age = document.getElementById("user");
       
       // let r = age.restriction_age;
-      console.log(age.value);
+      
       let res = C.getAllMovies(age.value);
       return res
     };

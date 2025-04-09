@@ -7,10 +7,11 @@ let templateOp = await templateFileOp.text();
 let NavBar = {};
 
 NavBar.format = function (data) {
+ 
   let Op='';
   let html = template;
   
-  html = html.replace("{{hAbout}}");
+  // html = html.replace("{{hAbout}}");
   for (const user of data){
     
     Op+=NavBar.formatOp(user)

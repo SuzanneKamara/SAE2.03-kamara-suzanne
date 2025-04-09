@@ -63,6 +63,9 @@ if ( isset($_REQUEST['todo']) ){
     case 'adduser':
       $data = addUserController();
         break;
+    case 'readuserSing':
+      $data = readSingUserController();
+        break;
     case 'readuser':
       $data = readUserController();
         break;

@@ -11,7 +11,7 @@ DataProfile.read = async function (){
     // On utilise ensuite la méthode json() pour extraire de cette réponse les données au format JSON.
     // Ces données (data) sont automatiquement converties en objet JavaScript.
     let data = await answer.json();
-    
+    console.log(data);
     // Enfin, on retourne ces données.
     return data;
 }
