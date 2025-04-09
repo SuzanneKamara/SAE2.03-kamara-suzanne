@@ -175,11 +175,11 @@ function addFavController(){
   
   
     
+$movie_name = $_REQUEST['movie_name'];
 $id_user = $_REQUEST['id_user'];
-$id_movie = $_REQUEST['id_movie'];
 
 // Mise à jour du menu à l'aide de la fonction updateMenu décrite dans model.php
-$ok = addFav( $id_user, $id_movie);
+$ok = addFav( $movie_name, $id_user);
 // $ok est le nombre de ligne affecté par l'opération de mise à jour dans la BDD (voir model.php)
 // return $ok;
 // if ($ok!=0){

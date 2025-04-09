@@ -241,25 +241,25 @@ function readSingUser($id){
 /**
  * Récupère le menu pour un jour spécifique dans la base de données.
  *
- * @param string $id_user La semaine pour laquelle le menu est récupéré.
- * @param string $id_movie Le jour pour lequel le menu est récupéré.
+ * @param string $movie_name La semaine pour laquelle le menu est récupéré.
+ * @param string $id_user Le jour pour lequel le menu est récupéré.
  * @return int Un tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
  */
 
 
- function addFav($id_user,$id_movie){
+ function addFav($movie_name, $id_user){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
     // $sql = "insert into 'Movie' values(Null,':name',':year',':lenght',':description',':director',':id_category',':image',':trailer');" ;
     $sql = "INSERT INTO Favorites  
-    (id_user, id_movie) 
-    VALUES (:id_user, :id_movie);";
+    (movie_name, id_user) 
+    VALUES (:movie_name, :id_user);";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
     // Lie le paramètre à la valeur
     $stmt->bindParam(':id_user', $id_user);
-    $stmt->bindParam(':id_movie', $id_movie);
+    $stmt->bindParam(':movie_name', $movie_name);
     
     // Exécute la requête SQL
     $stmt->execute();

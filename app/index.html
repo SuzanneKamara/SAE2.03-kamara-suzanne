@@ -98,6 +98,18 @@
       return res
     };
 
+    C.handlerAddFav= async function  (movie_name,id_user) {
+      // let movie = await DataMovie.request(movie_name);
+      let user = document.getElementById("user");
+      let data = await DataMovie.addFav(movie_name,id_user);
+      // if (data.length == 0){
+      //   data = [
+      //     {name: "Il n'y a pas de film disponible pour l'instant"}
+      //   ];
+      // }
+      
+    };
+
     // rendu des films par categories
       V.renderMovies = function (movies) {
         let content = document.querySelector("#content");

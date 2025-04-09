@@ -18,6 +18,7 @@ CategorySection.format = function (movie,cat) {
     
     html = html.replace("{{img}}", movie.image);
     html = html.replaceAll("{{title}}", movie.name);
+    html = html.replace("{{user_id}", movie.id);
   }
  
   
