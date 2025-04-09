@@ -97,10 +97,15 @@
       let res = C.getAllMovies(age.value);
       return res
     };
-
+    C.getUserId= function  () {
+      let id = document.querySelector("#idUserHid");
+      console.log(id);
+      return id.value;
+    };
     C.handlerAddFav= async function  (movie_name,id_user) {
       // let movie = await DataMovie.request(movie_name);
-      let user = document.getElementById("user");
+      
+      
       let data = await DataMovie.addFav(movie_name,id_user);
       // if (data.length == 0){
       //   data = [

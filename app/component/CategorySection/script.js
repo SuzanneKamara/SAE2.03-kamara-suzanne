@@ -11,14 +11,14 @@ let templateCategory = await templateCategoryFile.text();
 
 let CategorySection = {};
 
-CategorySection.format = function (movie,cat) {
+CategorySection.format = function (movie,cat,id) {
   let html = template;
   // let url = "../server/images/"+ movie.image;
   if (cat == movie.category_name) {
     
     html = html.replace("{{img}}", movie.image);
     html = html.replaceAll("{{title}}", movie.name);
-    html = html.replace("{{user_id}", movie.id);
+    // html = html.replace("{{user_id}", id);
   }
  
   

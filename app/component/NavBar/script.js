@@ -14,7 +14,8 @@ NavBar.format = function (data) {
   // html = html.replace("{{hAbout}}");
   for (const user of data){
     
-    Op+=NavBar.formatOp(user)
+    Op+=NavBar.formatOp(user);
+    
   }
   html = html.replace("{{profiles}}", Op)
   return html;
@@ -26,7 +27,10 @@ NavBar.formatOp = function (user){
   htmlOp=htmlOp.replace('{{value}}',user.restriction_age);
   
   htmlOp=htmlOp.replace('{{placeholder}}',user.name);
+  htmlOp = htmlOp.replace("{{user_id}}", user.id);
+  console.log(user.id);
   return htmlOp
 }
+
 
 export { NavBar };
