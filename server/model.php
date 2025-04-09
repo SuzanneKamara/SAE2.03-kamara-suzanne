@@ -130,17 +130,9 @@ function addMovie($n, $y,$l,$d,$dir,$c, $i,$t, $min_age){
 
 }
 
-/**
- * Récupère le menu pour un jour spécifique dans la base de données.
- *
- * @param string $n La semaine pour laquelle le menu est récupéré.
- * @param string $pp Le jour pour lequel le menu est récupéré.
- * @param string $ Le plat principal pour le jour spécifié.
- * @return int Un tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
- */
 
  
-// user
+
 function readUser(){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
@@ -156,6 +148,16 @@ function readUser(){
     $res = $stmt->fetchAll(PDO::FETCH_OBJ);
     return $res; // Retourne les résultats
 }
+
+/**
+ * Récupère le menu pour un jour spécifique dans la base de données.
+ *
+ * @param string $n La semaine pour laquelle le menu est récupéré.
+ * @param string $pp Le jour pour lequel le menu est récupéré.
+ * @param string $ Le plat principal pour le jour spécifié.
+ * @return int Un tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
+ */
+
 
 function addUser($n, $pp,$r){
     // Connexion à la base de données
@@ -179,6 +181,15 @@ function addUser($n, $pp,$r){
     $res = $stmt->rowCount(); 
     return $res;
 }
+/**
+ * Récupère le menu pour un jour spécifique dans la base de données.
+ *
+ * @param string $id La semaine pour laquelle le menu est récupéré.
+ * @param string $name Le jour pour lequel le menu est récupéré.
+ * @param string $img Le plat principal pour le jour spécifié.
+ * @param string $age Le plat principal pour le jour spécifié.
+ * @return int Un tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
+ */
 
 function updUser($id,$name,$img,$age){
     // Connexion à la base de données
@@ -204,6 +215,13 @@ function updUser($id,$name,$img,$age){
     $res = $stmt->rowCount(); 
     return $res;
 }
+
+/**
+ * Récupère le menu pour un jour spécifique dans la base de données.
+ *
+ * @param string $id La semaine pour laquelle le menu est récupéré.
+ * @return array Un tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
+ */
 function readSingUser($id){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);

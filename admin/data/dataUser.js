@@ -22,7 +22,7 @@ DataUser.readUser = async function (id){
     // fetch permet d'envoyer une requête HTTP à l'URL spécifiée. 
    // L'URL est construite en concaténant HOST_URL à "/server/script.php?direction=" et la valeur de la variable dir. 
    // L'URL finale dépend de la valeur de HOST_URL et de dir.
-   let answer = await fetch(HOST_URL + "/server/script.php?todo=readuserSing&id"+id);
+   let answer = await fetch(HOST_URL + "/server/script.php?todo=readuserSing&id="+id);
    // answer est la réponse du serveur à la requête fetch.
    // On utilise ensuite la méthode json() pour extraire de cette réponse les données au format JSON.
    // Ces données (data) sont automatiquement converties en objet JavaScript.
@@ -66,7 +66,7 @@ DataUser.adduser = async function (fdata) {
  * @param {*} fdata un objet FormData contenant les données du formulaire à envoyer au serveur.
  * @returns la réponse du serveur.
  */
-DataUser.update = async function (fdata,id) {
+DataUser.update = async function (fdata) {
     // fetch possède un deuxième paramètre (optionnel) qui est un objet de configuration de la requête HTTP:
     //  - method : la méthode HTTP à utiliser (GET, POST...)
     //  - body : les données à envoyer au serveur (sous forme d'objet FormData ou bien d'une chaîne de caractères, par exempe JSON)
@@ -75,7 +75,7 @@ DataUser.update = async function (fdata,id) {
         body: fdata // données à envoyer sous forme d'objet FormData
         
     };
-    let answer = await fetch(HOST_URL + "/server/script.php?todo=updateuser&id="+id, config);
+    let answer = await fetch(HOST_URL + "/server/script.php?todo=updateuser", config);
     let data = await answer.json();
     // return data;
     if (data.error) {

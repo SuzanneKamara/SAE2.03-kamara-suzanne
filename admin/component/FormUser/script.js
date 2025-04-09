@@ -8,23 +8,23 @@ let templateOp = await templateFileOp.text();
 
 let FormUser = {};
 
-FormUser.autoFill = function(profile){
-    // let id = document.querySelector("select[id=id]");
+// FormUser.autoFill = function(profile){
+//     // let id = document.querySelector("select[id=id]");
     
-  let inputName = document.querySelectorAll("#nameuser");
-  console.log(inputName); 
-  let inputPP = document.querySelectorAll("#ppuser"); 
-  let inputAge = document.querySelectorAll("#rauser"); 
+//   let inputName = document.querySelector("#nameuser");
+//   console.log(inputName); 
+//   let inputPP = document.querySelector("#ppuser"); 
+//   let inputAge = document.querySelector("#rauser"); 
   
   
-  inputName.value = profile.name;
-  console.log(inputName); 
-  inputPP.value = profile.profile_pic;
-  inputAge.value = profile.restriction_age;
+//   inputName.value = profile.name;
+//   console.log(inputName); 
+//   inputPP.value = profile.profile_pic;
+//   inputAge.value = profile.restriction_age;
 
 
   
-}
+// }
 
 FormUser.format = function(data){
   

@@ -30,10 +30,11 @@
 
       C.start = function () {
         V.renderLog("Démarrage de l'application");
-        V.renderLog("Bienvenue dans le backoffice")
+        V.renderLog("Bienvenue dans le backoffice");
         V.renderForm();
-        C.handlerReadUser()
-        
+        C.handlerReadAll();
+        // C.handlerReadUser();
+       
         
       };
 
@@ -112,11 +113,13 @@
     C.getUserId= function(){
       let id = document.querySelector('#id');
       
-      C.handlerReadUser(id.value);
-      console.log(C.handlerReadUser(id.value));
+      // C.handlerReadUser(id.value);
       
+      
+      return id.value;
     }
 
+    // mise à jour d' un profile
     C.handlerUpdUser = async function(){
         
         // il s'agit de l'élément <form> du composant NewMenuForm
@@ -125,12 +128,12 @@
         let fd = new FormData(form);
         // Attend la réponse de la fonction `DataMenu.update(fd)`
         // let read = await DataUser.read();
-        let userId= document.querySelector("#id").value;
-        let dat = DataUser.update(fd,userId);
-        console.log(userId);
+       
+        let data= DataUser.update(fd);
+        
         // let res = await DataUser.upduser(fd,userId);
         
-        return res;
+        return data;
         
         // Affiche le résultat de la mise à jour dans le journal
         V.renderLog(res);
@@ -148,6 +151,19 @@
       
       return datauser;
     };
+    C.handlerReadAll= async function  (id) {
+      
+      let data = await DataUser.read();
+      
+      // let r = age.restriction_age;
+      V.renderFormUser(data);
+      
+      
+      
+    };
+    // let datauser= await DataUser.readUser(id);
+      
+    //   return datauser;
     
     
 
