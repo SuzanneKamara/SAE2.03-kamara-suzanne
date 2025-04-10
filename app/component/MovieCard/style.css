@@ -53,7 +53,7 @@
    }
 }
 
-.addFav__check{
+#addFav{
   position: relative;
   z-index: 3;
 }
@@ -63,7 +63,7 @@
   stroke: yellow;
   fill: yellow;
 }}
-.addFav__check:checked{
+#addFav:checked{
   stroke: yellow;
   fill: yellow;
 }

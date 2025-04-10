@@ -83,30 +83,37 @@
       let res = C.getAllMovies(age);
       return res
     };
-    C.getUserId= async function  () {
-      let id = document.querySelector("#idUserHid").textcontent;
+    C.getUserId = async function  () {
+      let id = document.querySelector("p[class='idUserHid']").textContent;
+      // .textcontent
       console.log(id);
       return id;
     };
     C.handlerAddFav= async function  (movie_name,id_user) {
-      
-      
-      
-      
-      let label = document.querySelector("#addFav");
-      if (label.indeterminate == true){
-        let data = await DataMovie.addFav(movie_name,id_user);
-        label.style.fill = "yellow";
+      let data = await DataMovie.addFav(movie_name,id_user);
+      // let svg = document.querySelector(".addFav_star");
+     
       }
-      else if(label.indeterminate == false){
-        let data = await DataMovie.delFav(movie_name,id_user);
-        label.style.fill = "none";
+    ;
+
+    C.handlerDelFav= async function  (movie_name,id_user) {
+      let data = await DataMovie.delFav(movie_name,id_user);
+      // let svg = document.querySelector(".addFav_star");
+     
       }
-      
+    ;
 
-    
-    };
+    C.handlerAddDelFav= async function  (movie_name,id_user) {
+      let label = document.getElementById("addFav").checked
+      if (label==true) {
+        C.handlerAddFav(movie_name,id_user);
+      } else {
+        C.handlerDelFav(movie_name,id_user);
 
+      }
+      // let svg = document.querySelector(".addFav_star");
+     
+      }
     // rendu des films par categories
       V.renderMovies = function (movies) {
         let content = document.querySelector("#content");

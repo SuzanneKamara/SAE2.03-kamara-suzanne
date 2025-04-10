@@ -179,7 +179,7 @@ $movie_name = $_REQUEST['movie_name'];
 $id_user = $_REQUEST['id_user'];
 
 $ok = addFav( $movie_name, $id_user);
-
+return $ok;
 }
 
 function delFavController(){
@@ -192,9 +192,20 @@ $id_user = $_REQUEST['id_user'];
 
 
 $ok = delFav( $movie_name, $id_user);
-
+return $ok;
 
 }
-
+function readUserIdController(){
+ 
+  
+  
+    
+  $name = $_REQUEST['name'];
+  
+  
+  $ok = readUserId( $movie_name);
+  
+  return $ok;
+  }
     
 
