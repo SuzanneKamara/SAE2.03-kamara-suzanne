@@ -74,17 +74,19 @@
       V.renderMoviePage(data);
       }
     C.getUserAge= function  () {
-      let age = document.getElementById("user");
+      let age = document.getElementById("user").value;
+      
+
+      console.log(age);
       
       
-      
-      let res = C.getAllMovies(age.value);
+      let res = C.getAllMovies(age);
       return res
     };
-    C.getUserId= function  () {
-      let id = document.querySelector("#idUserHid");
+    C.getUserId= async function  () {
+      let id = document.querySelector("#idUserHid").textcontent;
       console.log(id);
-      return id.value;
+      return id;
     };
     C.handlerAddFav= async function  (movie_name,id_user) {
       
