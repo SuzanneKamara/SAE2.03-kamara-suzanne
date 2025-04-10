@@ -6,6 +6,7 @@
   color: var(--color-fg);
   background-color: var(--color-bg);
   position: fixed;
+  z-index: 5;
   .navbar__item {
     --_offset: 0.2rem;
     padding: 0.5rem 1rem;

@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Revalia&display=swap');
-
+.tohide{
+  visibility: hidden;
+  display: none;
+}
 .moviecard{
   height: 22rem;
   width: 16rem;
@@ -8,7 +11,9 @@
   background:linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6));
   display: flex;
   position: relative;
-  .moviecard__title{
+  .moviecard__caption{
+    display: flex;
+    flex-direction: row;
     position: absolute;
     color: var(--color-white);
     z-index: 2;
@@ -17,6 +22,7 @@
     left:0;
     font-family: Lexend, sans-serif;
     font-size: 2rem;
+    
   }
   &:hover{
     cursor: pointer;
@@ -45,6 +51,19 @@
    @media (screen:64rem) {
     
    }
+}
+
+.addFav__check{
+  position: relative;
+  z-index: 3;
+}
+.addFav_star:hover{
+  stroke: yellow;
+  fill: yellow;
+}
+.addFav__check:checked{
+  stroke: yellow;
+  fill: yellow;
 }
 /* #content{
   display: flex;
