@@ -57,10 +57,12 @@
   position: relative;
   z-index: 3;
 }
-.addFav_star:hover{
+.addFav_star{
+  /* fill: rgba(255, 255, 0, 0); */
+&:hover{
   stroke: yellow;
   fill: yellow;
-}
+}}
 .addFav__check:checked{
   stroke: yellow;
   fill: yellow;

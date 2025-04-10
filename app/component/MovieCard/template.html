@@ -1,6 +1,6 @@
-<div  class="movie-link" onclick="C.getMovie(&quot;{{title}}&quot;) " >
+<div  class="movie-link"  >
   <figure class="moviecard font-sans">
-  <div class="moviecard__img-container">
+  <div class="moviecard__img-container"onclick="C.getMovie(&quot;{{title}}&quot;) ">
   <img src="../server/images/{{img}}" alt="moviecard" class="moviecard__img"></div>
   <figcaption class="moviecard__caption">
     <h1 class="moviecard__title"> {{title}} </h1>
@@ -16,7 +16,7 @@
         </defs>
       </svg>
     </label>
-    <input id="addFav__check" class="tohide" type="checkbox" onclick="C.handlerAddFav( &quot;{{title}}&quot;, C.getUserId() )" id="addFav" name="todo">
+    <input  class="tohide" type="checkbox" onclick="C.handlerAddFav( &quot;{{title}}&quot;, C.getUserId() )" id="addFav" name="todo">
   </figcaption>
 </figure>
 </div>

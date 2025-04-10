@@ -90,7 +90,18 @@
       
       
       
-      let data = await DataMovie.addFav(movie_name,id_user);
+      
+      let label = document.querySelector("#addFav");
+      if (label.indeterminate == true){
+        let data = await DataMovie.addFav(movie_name,id_user);
+        label.style.fill = "yellow";
+      }
+      else if(label.indeterminate == false){
+        let data = await DataMovie.delFav(movie_name,id_user);
+        label.style.fill = "none";
+      }
+      
+
     
     };
 

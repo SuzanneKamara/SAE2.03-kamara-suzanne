@@ -268,3 +268,24 @@ function readSingUser($id){
     $res = $stmt->rowCount(); 
     return $res;
 }
+
+function delFav($movie_name, $id_user){
+    // Connexion à la base de données
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    // Requête SQL pour récupérer le menu avec des paramètres
+    // $sql = "insert into 'Movie' values(Null,':name',':year',':lenght',':description',':director',':id_category',':image',':trailer');" ;
+    $sql = "DELETE FROM Favorites  
+    WHERE id_user = :id_user AND movie_name = :movie_name";
+    // Prépare la requête SQL
+    $stmt = $cnx->prepare($sql);
+    // Lie le paramètre à la valeur
+    $stmt->bindParam(':id_user', $id_user);
+    $stmt->bindParam(':movie_name', $movie_name);
+    
+    // Exécute la requête SQL
+    $stmt->execute();
+    
+    // Récupère les résultats de la requête sous forme d'objets
+    $res = $stmt->rowCount(); 
+    return $res;
+}
