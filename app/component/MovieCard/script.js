@@ -8,6 +8,8 @@ MovieCard.format = function (movie) {
   // let url = "../server/images/"+ movie.image;
   html = html.replace("{{img}}", movie.image);
   html = html.replaceAll("{{title}}", movie.name);
+  html = html.replace("{{id_movie}}", movie.id);
+  console.log(movie.id);
   return html;
 };
 

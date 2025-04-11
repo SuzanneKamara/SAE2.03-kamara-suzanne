@@ -70,7 +70,7 @@ function getAllMovies($age){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
-    $sql = "SELECT Movie.name, Movie.year, Movie.length, Movie.description, Movie.director,Movie.image,Movie.trailer, Movie.min_age, Category.name AS 'category_name' 
+    $sql = "SELECT Movie.name, Movie.year, Movie.length, Movie.description, Movie.director,Movie.image,Movie.trailer, Movie.min_age, Movie.id , Category.name AS 'category_name' 
     FROM `Movie` left join Category on Category.id = Movie.id_category   WHERE   Movie.min_age<:age;";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
@@ -241,25 +241,25 @@ function readSingUser($id){
 /**
  * Récupère le menu pour un jour spécifique dans la base de données.
  *
- * @param string $movie_name La semaine pour laquelle le menu est récupéré.
+ * @param string $id_movie La semaine pour laquelle le menu est récupéré.
  * @param string $id_user Le jour pour lequel le menu est récupéré.
  * @return int Un tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
  */
 
 
- function addFav($movie_name, $id_user){
+ function addFav($id_movie, $id_user){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
     // $sql = "insert into 'Movie' values(Null,':name',':year',':lenght',':description',':director',':id_category',':image',':trailer');" ;
     $sql = "INSERT INTO Favorites  
-    (movie_name, id_user) 
-    VALUES (:movie_name, :id_user);";
+    (id_movie, id_user) 
+    VALUES (:id_movie, :id_user);";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
     // Lie le paramètre à la valeur
     $stmt->bindParam(':id_user', $id_user);
-    $stmt->bindParam(':movie_name', $movie_name);
+    $stmt->bindParam(':id_movie', $id_movie);
     
     // Exécute la requête SQL
     $stmt->execute();
@@ -269,23 +269,43 @@ function readSingUser($id){
     return $res;
 }
 
-function delFav($movie_name, $id_user){
+function delFav($id_movie, $id_user){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
     // $sql = "insert into 'Movie' values(Null,':name',':year',':lenght',':description',':director',':id_category',':image',':trailer');" ;
     $sql = "DELETE FROM Favorites  
-    WHERE id_user = :id_user AND movie_name = :movie_name";
+    WHERE id_user = :id_user AND id_movie = :id_movie";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
     // Lie le paramètre à la valeur
     $stmt->bindParam(':id_user', $id_user);
-    $stmt->bindParam(':movie_name', $movie_name);
+    $stmt->bindParam(':id_movie', $id_movie);
     
     // Exécute la requête SQL
     $stmt->execute();
     
     // Récupère les résultats de la requête sous forme d'objets
     $res = $stmt->rowCount(); 
+    return $res;
+}
+
+function readUserId( $name){
+    // Connexion à la base de données
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    // Requête SQL pour récupérer le menu avec des paramètres
+    // $sql = "insert into 'Movie' values(Null,':name',':year',':lenght',':description',':director',':id_category',':image',':trailer');" ;
+    $sql = "SELECT id FROM User  
+    WHERE name =:name";
+    // Prépare la requête SQL
+    $stmt = $cnx->prepare($sql);
+    // Lie le paramètre à la valeur
+    $stmt->bindParam(':name', $name);
+    
+    // Exécute la requête SQL
+    $stmt->execute();
+    
+    // Récupère les résultats de la requête sous forme d'objets
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
     return $res;
 }

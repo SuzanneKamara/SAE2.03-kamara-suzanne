@@ -30,7 +30,7 @@
         C.getAllMovies();
         C.handlerUser();
         C.getUserAge();
-        
+        // console.log(DataProfile.readId("Interstellar"));
       };
       
 
@@ -89,26 +89,32 @@
       console.log(id);
       return id;
     };
-    C.handlerAddFav= async function  (movie_name,id_user) {
-      let data = await DataMovie.addFav(movie_name,id_user);
+    C.handlerAddFav= async function  (id_movie,id_user) {
+      let data = await DataMovie.addFav(id_movie,id_user);
       // let svg = document.querySelector(".addFav_star");
      
       }
     ;
 
-    C.handlerDelFav= async function  (movie_name,id_user) {
-      let data = await DataMovie.delFav(movie_name,id_user);
+    C.handlerDelFav= async function  (id_movie,id_user) {
+      let data = await DataMovie.delFav(id_movie,id_user);
       // let svg = document.querySelector(".addFav_star");
      
       }
     ;
 
-    C.handlerAddDelFav= async function  (movie_name,id_user) {
+    C.handlerAddDelFav= async function  (id_movie) {
+      let name = document.querySelector('#user').selectedOptions;
+      let n = name.item(0);
+      console.log(n);
+
+      let user = await  C.handlerReadUserId(name.textContent);
+      console.log(user);
       let label = document.getElementById("addFav").checked
       if (label==true) {
-        C.handlerAddFav(movie_name,id_user);
+        C.handlerAddFav(id_movie,user);
       } else {
-        C.handlerDelFav(movie_name,id_user);
+        C.handlerDelFav(id_movie,user);
 
       }
       // let svg = document.querySelector(".addFav_star");
@@ -128,6 +134,15 @@
      
       V.renderMovies(data);
     }
+    C.handlerReadUserId = async function (name) {
+      let data = await DataProfile.readId(name);
+      console.log(data);
+      
+
+      return data[0].id_movie;
+      
+    }
+    
 
 
       C.start(); // Démarre l'application

@@ -175,10 +175,10 @@ function addFavController(){
   
   
     
-$movie_name = $_REQUEST['movie_name'];
+$id_movie = $_REQUEST['id_movie'];
 $id_user = $_REQUEST['id_user'];
 
-$ok = addFav( $movie_name, $id_user);
+$ok = addFav( $id_movie, $id_user);
 return $ok;
 }
 
@@ -187,7 +187,7 @@ function delFavController(){
   
   
     
-$movie_name = $_REQUEST['movie_name'];
+$id_movie = $_REQUEST['id_movie'];
 $id_user = $_REQUEST['id_user'];
 
 
@@ -203,7 +203,7 @@ function readUserIdController(){
   $name = $_REQUEST['name'];
   
   
-  $ok = readUserId( $movie_name);
+  $ok = readUserId( $name);
   
   return $ok;
   }

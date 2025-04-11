@@ -57,11 +57,11 @@ DataMovie.request= async function(name){
     return data;
 }
 
-DataMovie.addFav= async function(movie_name,id_user){
+DataMovie.addFav= async function(id_movie,id_user){
     // fetch permet d'envoyer une requête HTTP à l'URL spécifiée. 
     // L'URL est construite en concaténant HOST_URL à "/server/script.php?direction=" et la valeur de la variable dir. 
     // L'URL finale dépend de la valeur de HOST_URL et de dir.
-    let answer = await fetch(HOST_URL + "/server/script.php?todo=addFav&movie_name="+movie_name+"&id_user="+id_user );
+    let answer = await fetch(HOST_URL + "/server/script.php?todo=addFav&id_movie="+id_movie+"&id_user="+id_user );
     // answer est la réponse du serveur à la requête fetch.
     // On utilise ensuite la méthode json() pour extraire de cette réponse les données au format JSON.
     // Ces données (data) sont automatiquement converties en objet JavaScript.
@@ -70,11 +70,11 @@ DataMovie.addFav= async function(movie_name,id_user){
     return data;
 }
 
-DataMovie.delFav= async function(movie_name,id_user){
+DataMovie.delFav= async function(id_movie,id_user){
     // fetch permet d'envoyer une requête HTTP à l'URL spécifiée. 
     // L'URL est construite en concaténant HOST_URL à "/server/script.php?direction=" et la valeur de la variable dir. 
     // L'URL finale dépend de la valeur de HOST_URL et de dir.
-    let answer = await fetch(HOST_URL + "/server/script.php?todo=delFav&movie_name="+movie_name+"&id_user="+id_user );
+    let answer = await fetch(HOST_URL + "/server/script.php?todo=delFav&id_movie="+id_movie+"&id_user="+id_user );
     // answer est la réponse du serveur à la requête fetch.
     // On utilise ensuite la méthode json() pour extraire de cette réponse les données au format JSON.
     // Ces données (data) sont automatiquement converties en objet JavaScript.
