@@ -48,7 +48,7 @@ function getMovie($movie){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
-    $sql = "SELECT Movie.name, Movie.year, Movie.length, Movie.description, Movie.director, Movie.id_category,Movie.image,Movie.trailer, Movie.min_age, Category.name AS 'category_name' 
+    $sql = "SELECT Movie.id, Movie.name, Movie.year, Movie.length, Movie.description, Movie.director, Movie.id_category,Movie.image,Movie.trailer, Movie.min_age, Category.name AS 'category_name' 
     FROM `Movie` left join Category on Category.id = Movie.id_category WHERE Movie.name= :movie;";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);

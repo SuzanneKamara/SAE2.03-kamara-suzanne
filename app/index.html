@@ -83,12 +83,7 @@
       let res = C.getAllMovies(age);
       return res
     };
-    C.getUserId = async function  () {
-      let id = document.querySelector("p[class='idUserHid']").textContent;
-      // .textcontent
-      console.log(id);
-      return id;
-    };
+    
     C.handlerAddFav= async function  (id_movie,id_user) {
       let data = await DataMovie.addFav(id_movie,id_user);
       // let svg = document.querySelector(".addFav_star");
@@ -103,18 +98,20 @@
       }
     ;
 
-    C.handlerAddDelFav= async function  (id_movie) {
+    C.handlerAddDelFav= async function  (movie) {
+      let movieId = await DataMovie.request(movie);
+      console.log(movieId[0].id);
       let name = document.querySelector('#user').selectedOptions;
-      let n = name.item(0);
+      let n = name.item(0).textContent;
       console.log(n);
-
-      let user = await  C.handlerReadUserId(name.textContent);
+      // console.log.id);
+      let user = await  C.handlerReadUserId(n);
       console.log(user);
-      let label = document.getElementById("addFav").checked
+      let label = document.getElementById(movie).checked
       if (label==true) {
-        C.handlerAddFav(id_movie,user);
+        C.handlerAddFav(movieId[0].id,user);
       } else {
-        C.handlerDelFav(id_movie,user);
+        C.handlerDelFav(movieId[0].id,user);
 
       }
       // let svg = document.querySelector(".addFav_star");
@@ -136,10 +133,10 @@
     }
     C.handlerReadUserId = async function (name) {
       let data = await DataProfile.readId(name);
-      console.log(data);
+      console.log(data[0]);
       
 
-      return data[0].id_movie;
+      return data[0].id;
       
     }
     
