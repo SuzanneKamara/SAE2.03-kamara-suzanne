@@ -83,6 +83,10 @@ DataMovie.delFav= async function(id_movie,id_user){
     return data;
 }
 
+
+DataMovie.showcaseMovies = async function(){
+    let answer = await fetch(HOST_URL + "/server/script.php?todo=showcase" );
+}
 /* C'EST QUOI async/await ?
     
    Il y a des instructions qui prennent du temps sans qu'on puisse prédire combien.

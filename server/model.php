@@ -101,14 +101,14 @@ function getAllMovies($age){
  * @return int Un tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
  */
 
-function addMovie($n, $y,$l,$d,$dir,$c, $i,$t, $min_age){
+function addMovie($n, $y,$l,$d,$dir,$c, $i,$t, $min_age,$showcase){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
     // $sql = "insert into 'Movie' values(Null,':name',':year',':lenght',':description',':director',':id_category',':image',':trailer');" ;
     $sql = "INSERT INTO Movie  
-    (id, name, year, length, description, director, id_category, image, trailer, min_age) 
-    VALUES (NULL, :name, :year, :length, :description, :director, :id_category, :image, :trailer, :min_age);";
+    (id, name, year, length, description, director, id_category, image, trailer, min_age, showcase) 
+    VALUES (NULL, :name, :year, :length, :description, :director, :id_category, :image, :trailer, :min_age,:showcase);";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
     // Lie le paramètre à la valeur
@@ -121,6 +121,7 @@ function addMovie($n, $y,$l,$d,$dir,$c, $i,$t, $min_age){
     $stmt->bindParam(':image', $i);
     $stmt->bindParam(':trailer', $t);
     $stmt->bindParam(':min_age', $min_age);
+    $stmt->bindParam(':showcase', $showcase);
     // Exécute la requête SQL
     $stmt->execute();
     
