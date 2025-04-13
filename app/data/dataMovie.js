@@ -85,7 +85,7 @@ DataMovie.delFav= async function(id_movie,id_user){
 
 
 DataMovie.showcaseMovies = async function(){
-    let answer = await fetch(HOST_URL + "/server/script.php?todo=showcase" );
+    let answer = await fetch(HOST_URL + "/server/script.php?todo=showcase");
 }
 /* C'EST QUOI async/await ?
     

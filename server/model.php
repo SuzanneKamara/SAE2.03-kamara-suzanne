@@ -310,3 +310,22 @@ function readUserId( $name){
     $res = $stmt->fetchAll(PDO::FETCH_OBJ);
     return $res;
 }
+function readShowcaseMov( ){
+    // Connexion à la base de données
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    // Requête SQL pour récupérer le menu avec des paramètres
+    // $sql = "insert into 'Movie' values(Null,':name',':year',':lenght',':description',':director',':id_category',':image',':trailer');" ;
+    $sql = "SELECT FROM Movie 
+    WHERE showcase =1";
+    // Prépare la requête SQL
+    $stmt = $cnx->prepare($sql);
+    // Lie le paramètre à la valeur
+    
+    
+    // Exécute la requête SQL
+    $stmt->execute();
+    
+    // Récupère les résultats de la requête sous forme d'objets
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $res;
+}

@@ -209,4 +209,16 @@ function readUserIdController(){
   return $ok;
   }
     
+  function readShowcaseMovController(){
+ 
+  
+  
+  
+    
+    
+    $ok = readShowcaseMov( );
+    
+    return $ok;
+    }
+      
 
