@@ -27,10 +27,11 @@
       
       window.C = {};
       C.start = function () {
-        
+        C.handlerShowcase();
         C.getAllMovies();
         C.handlerUser();
         C.getUserAge();
+        // V.renderShowcaseMovies();
         C.handlerShowcase();
         // console.log(DataProfile.readId("Interstellar"));
       };
@@ -145,12 +146,19 @@
     C.handlerShowcase= async function () {
       
       let data = await DataMovie.showcaseMovies();
-      console.log(data);
+      
       V.renderShowcaseMovies(data);
     }
+    // console.log(C.handlerShowcase());
 
     V.renderShowcaseMovies= function (data){
+      // let data = DataMovie.showcaseMovies();
       let content = document.querySelector("#showcase");
+      if (!Array.isArray(data) || data.length === 0) {
+        data = [
+          {title: "Il n'y a pas de film à la une pour l'instant"}
+        ];
+      }
       content.innerHTML = ShowcaseMovies.formatShowcase(data);
       console.log(data);
     };

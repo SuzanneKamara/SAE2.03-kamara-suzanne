@@ -8,7 +8,7 @@ let template = await templateFile.text();
 // import des teplate des category
 let template2File = await fetch("./component/ShowcaseMovies/template1.html");
 let template2 = await template2File.text();
-
+console.log(template2);
 let ShowcaseMovies = {};
 
 ShowcaseMovies.format = function (movie) {
@@ -17,7 +17,7 @@ ShowcaseMovies.format = function (movie) {
   
     html = html.replace("{{img}}", movie.image);
     html = html.replaceAll("{{title}}", movie.name);
-    
+    html = html.replaceAll("{{desc}}", movie.description);
   
  
   
@@ -33,19 +33,12 @@ ShowcaseMovies.formatShowcase = function (movies) {
   
   for (const elt of movies){
     card+=ShowcaseMovies.format(elt);
+    
   }
   html = html.replace("{{showcaseMovies}}",card);
   return html;
 
-}
-
-
-
-
-       
-    
-    
-    
+}    
 ;
 
 export { ShowcaseMovies };

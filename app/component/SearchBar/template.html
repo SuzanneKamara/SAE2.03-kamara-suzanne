@@ -1,0 +1,19 @@
+<!-- Barre de recherche -->
+   <!-- utiliser datalist pour la suggestion de contenue -->
+   <div class="navbar__search">
+    <input
+      list="movies"
+      type="search"
+      id="searchBar"
+      class="navbar__search-input"
+      placeholder="Rechercher un film..."
+      oninput="C.searchMovies(this.value)"
+    />
+    <button class="navbar__search-button" onclick="C.searchMovies(document.getElementById('searchBar').value)">
+      Rechercher
+    </button>
+  </div>
+
+<datalist id="movies">
+    {{options}}
+  </datalist>
