@@ -270,6 +270,14 @@ function readSingUser($id){
     return $res;
 }
 
+/**
+ * Récupère le menu pour un jour spécifique dans la base de données.
+ *
+ * @param string $id_movie La semaine pour laquelle le menu est récupéré.
+ * @param string $id_user Le jour pour lequel le menu est récupéré.
+ * @return int Un tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
+ */
+
 function delFav($id_movie, $id_user){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
@@ -321,6 +329,27 @@ function readShowcaseMov(){
     $stmt = $cnx->prepare($sql);
     // Lie le paramètre à la valeur
     
+    
+    // Exécute la requête SQL
+    $stmt->execute();
+    
+    // Récupère les résultats de la requête sous forme d'objets
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $res;
+}
+
+
+function searchMovies( $input){
+    // Connexion à la base de données
+    $cnx = new PDO("mysql:host=".HOST.";dbinput=".DBinput, DBLOGIN, DBPWD);
+    // Requête SQL pour récupérer le menu avec des paramètres
+    // $sql = "insert into 'Movie' values(Null,':input',':year',':lenght',':description',':director',':id_category',':image',':trailer');" ;
+    $sql = "SELECT * FROM Movie  
+    WHERE name LIKE ':input%' OR description LIKE ':input%' OR director LIKE ':input%' ";
+    // Prépare la requête SQL
+    $stmt = $cnx->prepare($sql);
+    // Lie le paramètre à la valeur
+    $stmt->bindParam(':input', $input);
     
     // Exécute la requête SQL
     $stmt->execute();

@@ -20,6 +20,8 @@
       import { CategorySection} from "./component/CategorySection/script.js"
       import {MoviePage} from "./component/MoviePage/script.js";
       import {ShowcaseMovies} from "./component/ShowcaseMovies/script.js";
+      import {SearchBar} from "./component/SearchBar/script.js";
+      import {SearchResults} from "./component/SearchResults/script.js";
       // data
       import {DataMovie} from "./data/dataMovie.js";
       import {DataProfile} from "./data/dataProfile.js";
@@ -75,6 +77,7 @@
         ];
       }
       V.renderMoviePage(data);
+      V.renderSearchBar(data);
       }
     C.getUserAge= function  () {
       let age = document.getElementById("user").value;
@@ -162,6 +165,29 @@
       content.innerHTML = ShowcaseMovies.formatShowcase(data);
       console.log(data);
     };
+
+    C.handlerSearchMovies = async function (input){
+      let data = await DataMovie.search(input);
+      V.renderSearchBar(data);
+      V.renderSearchResults(data);
+    }
+
+    V.renderSearchBar = function (data){
+      let res = data;
+      let content = document.querySelector("#header");
+      if (data=null){
+        res = [{name:""}];
+      }
+      content.innerHTML = SearchBar.format(res);
+    }
+
+    V.renderSearchResults = function (data){
+    
+    let content = document.querySelector("#content");
+    content.innerHTML = SearchResults.formate(data);
+}
+
+
       C.start(); // Démarre l'application
     </script>
   </body>

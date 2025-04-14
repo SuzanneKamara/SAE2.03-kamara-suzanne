@@ -2,11 +2,13 @@
 let templateFile = await fetch("./component/SearchResults/template.html");
 let template = await templateFile.text();
 
+let templateFile2 = await fetch("./component/MovieCard/template.html");
+let template2 = await templateFile2.text();
 // importer les template de moviecard
 
 let SearchResults = {};
 SearchResults.formatcard = function (movie) {
-  let html = template;
+  let html = template2;
   // let url = "../server/images/"+ movie.image;
   
     html = html.replace("{{img}}", movie.image);
@@ -20,13 +22,15 @@ SearchResults.formatcard = function (movie) {
 };
 
 SearchResults.format = function (movies) {
+  let html = template;
     let card='';
     
     for (const elt of movies){
         card+=SearchResults.formatcard(elt);
         
     }
-    return card;
+    html = html.replace("{{results}}",card);
+    return html;
 }
 
 export { SearchResults };

@@ -221,4 +221,16 @@ function readUserIdController(){
     return $ok;
     }
       
+    function searchMoviesController(){
+ 
+  
+  
+    
+      $input = $_REQUEST['input'];
+      
+      
+      $ok = searchMovies( $input);
+      
+      return $ok;
+      }
 
