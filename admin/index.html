@@ -8,7 +8,9 @@
   </head>
   <body>
     <section id="log"></section>
+    
     <section id="form"></section>
+    <section id="movSuggest"></section>
     <section id="formUser"></section>
 
     <script type="module">
@@ -16,6 +18,7 @@
       import { Log } from "./component/Log/script.js";
       import { Form } from "./component/Form/script.js";
       import { FormUser } from "./component/FormUser/script.js";
+      import {SearchResults} from "./component/SearchResults/script.js";
 
       // data
       import { DataMovie } from "./data/dataMovie.js";
@@ -31,8 +34,10 @@
       C.start = function () {
         V.renderLog("Démarrage de l'application");
         V.renderLog("Bienvenue dans le backoffice");
-        V.renderForm();
+        // V.renderForm();
         C.handlerReadAll();
+        C.handlerReadCategories();
+        
         // C.handlerReadUser();
        
         
@@ -49,9 +54,9 @@
         content.innerHTML = Log.format(txt);
       };
 
-      V.renderForm = function () {
+      V.renderForm = function (data) {
         let content = document.querySelector("#form");
-        content.innerHTML = Form.format();
+        content.innerHTML = Form.format(data);
         
       };
 
@@ -61,6 +66,11 @@
         content.innerHTML = FormUser.format(data);
         
       };
+      V.renderSearchResults = function (data){
+    
+    let content = document.querySelector("#movSuggest");
+    content.innerHTML = SearchResults.format(data);
+}
     
 
       C.handlerAdd = async function(){
@@ -156,11 +166,41 @@
       let data = await DataUser.read();
       
       // let r = age.restriction_age;
+
       V.renderFormUser(data);
       
       
       
     };
+
+    C.handlersearchMov= async function  (input) {
+      
+      let data = await DataMovie.search(input);
+      // let r = age.restriction_age;
+      
+      V.renderSearchResults(data); 
+    };
+
+    C.handlerAutofill= async function(name){
+      let data = await DataMovie.request(name);
+      Form.autofill(data[0]);
+      
+    }
+    
+
+    C.handlerReadCategories= async function  () {
+      
+      let data = await DataMovie.readCategories();
+      
+      // let r = age.restriction_age;
+
+      V.renderForm(data);
+      
+      
+      
+    };
+
+    // S'OCCUPER DU UPDATE MOVIE
     // let datauser= await DataUser.readUser(id);
       
     //   return datauser;

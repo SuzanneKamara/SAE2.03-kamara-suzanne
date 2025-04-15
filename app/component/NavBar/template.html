@@ -7,7 +7,23 @@
     <option value="0"  selected>Sélectionner un profil</option>
     {{profiles}}
   </select>
-  
+  <div class="navbar__search">
+    <input
+      list="movies"
+      type="search"
+      id="searchBar"
+      class="navbar__search-input"
+      placeholder="Rechercher un film..."
+      oninput="C.handlerSearchMovies(this.value)"
+    />
+    <datalist id="movies">
+      {{options}}
+    </datalist>
+    <!-- faire un render op dataList -->
+    <button class="navbar__search-button" onclick="C.handlerSearchMovies(document.getElementById('searchBar').value)">
+      Rechercher
+    </button>
+  </div>
   
 
 </nav>

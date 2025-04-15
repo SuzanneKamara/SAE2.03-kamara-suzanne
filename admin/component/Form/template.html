@@ -1,5 +1,6 @@
+<!-- addMovie -->
 <div class="addMovie">
-  <h4 class="addMovie__title"># Ajouter ou modifier un film</h4>
+  <h4 class="addMovie__title"># Ajouter un film</h4>
   <form class="addMovie__form" action="" method="post">
     <input class="input" required type="text" name="name" placeholder="Saisir un titre de film">
     <input class="input" required type="text" name="year" placeholder="Saisir l'année de sortie">
@@ -31,6 +32,58 @@
     <label for="showcaseChoice2">No</label>
 
     <input class="addButton" onclick=" C.handlerAdd()" type="submit" value="add" name="todo">
-
   </form>
+<!-- recherche de films -->
+  <div class="movie__search">
+    <input
+      list="movies"
+      type="search"
+      id="searchBar"
+      class="movie__search-input"
+      placeholder="Rechercher un film dans la base de données..."
+      oninput="C.handlersearchMov(this.value)"
+    />
+    <datalist id="movies">
+      <!-- {{options}} -->
+    </datalist>
+    <!-- faire un render op dataList  -->
+    <button class="movie__search-button" onclick="C.handlersearchMov(document.getElementById('searchBar').value)">
+      Rechercher
+    </button>
+  </div>
 </div>
+
+<!-- mise à jour d'un film -->
+
+  <div class="updmovie">
+    <h4>Modifier un film</h4>
+    
+    <form class="updmovie__form" action="" method="post">
+     
+      
+      <input class="inputUpd" required type="text" name="name" placeholder="Saisir un titre de film" value="">
+      <input class="inputUpd" required type="text" name="year" placeholder="Saisir l'année de sortie" value="">
+      <input class="inputUpd" required type="text" name="length" placeholder="Saisir la durée du film" value="">
+      <input class="inputUpd" required type="text" name="description"
+        placeholder="Saisir la description ou le synopsis du film" value="">
+        <input class="inputUpd" required type="text" name="director" placeholder="Saisir le nom du réalisateur" value="">
+    <select required class="inputUpd" name="id_category">
+      {{selectedcategory}}
+      {{op}}
+    </select>
+    <input class="inputUpd" required type="text" name="image" placeholder="Saisir le nom du fichier de l'image du film" value="">
+    <input class="inputUpd" required type="text" name="trailer" placeholder="Saisir l' URL du film" value="">
+    <input class="inputUpd" required type="number" name="min_age" placeholder="Saisir un âge de restriction" value="">
+    <input type="radio" id="showcaseChoice1upd" name="showcase" value="1"  />
+    <label class="inputUpd" for="showcaseChoice1upd">yes</label>
+
+    <input class="inputUpd" type="radio" id="showcaseChoice2upd" name="showcase" value="0" />
+    <label for="showcaseChoice2upd">no</label>
+    
+    <input class="addButton" onclick=" C.handlerUpdmovie()" type="submit" value="updatemovie" name="todo">
+    </form>
+    </div>
+
+  
+<!-- si le champs est vide, pas de modification  ou avoir la fonction autofill? -->
+ <!-- rendre l'affichage des catégories de manière dynamique -->

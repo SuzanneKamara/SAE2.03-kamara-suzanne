@@ -338,23 +338,45 @@ function readShowcaseMov(){
     return $res;
 }
 
+/**
+ * Récupère le menu pour un jour spécifique dans la base de données.
+ *
+ * @param string $input La semaine pour laquelle le menu est récupéré.
+ * @return array tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
+ */
 
 function searchMovies( $input){
     // Connexion à la base de données
-    $cnx = new PDO("mysql:host=".HOST.";dbinput=".DBinput, DBLOGIN, DBPWD);
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
     // $sql = "insert into 'Movie' values(Null,':input',':year',':lenght',':description',':director',':id_category',':image',':trailer');" ;
     $sql = "SELECT * FROM Movie  
-    WHERE name LIKE ':input%' OR description LIKE ':input%' OR director LIKE ':input%' ";
+    WHERE name LIKE :input OR description LIKE  :input  OR director LIKE  :input OR year LIKE  :input  ";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
     // Lie le paramètre à la valeur
-    $stmt->bindParam(':input', $input);
-    
+    $like= $input.'%';
+    $stmt->bindParam(':input',$like );
     // Exécute la requête SQL
     $stmt->execute();
     
     // Récupère les résultats de la requête sous forme d'objets
     $res = $stmt->fetchAll(PDO::FETCH_OBJ);
     return $res;
+}
+
+function readCategories(){
+    // Connexion à la base de données
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    // Requête SQL pour récupérer le menu avec des paramètres
+    $sql = "select * from Category WHERE 1;";
+    // Prépare la requête SQL
+    $stmt = $cnx->prepare($sql);
+    // Lie le paramètre à la valeur
+    // $stmt->bindParam(':name', $n);
+    // Exécute la requête SQL
+    $stmt->execute();
+    // Récupère les résultats de la requête sous forme d'objets
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $res; // Retourne les résultats
 }

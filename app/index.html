@@ -30,10 +30,10 @@
       window.C = {};
       C.start = function () {
         C.handlerShowcase();
-        C.getAllMovies();
         C.handlerUser();
         C.getUserAge();
         // V.renderShowcaseMovies();
+        // V.renderSearchBar(data);
         C.handlerShowcase();
         // console.log(DataProfile.readId("Interstellar"));
       };
@@ -77,7 +77,7 @@
         ];
       }
       V.renderMoviePage(data);
-      V.renderSearchBar(data);
+      V.renderSearchBar();
       }
     C.getUserAge= function  () {
       let age = document.getElementById("user").value;
@@ -168,23 +168,23 @@
 
     C.handlerSearchMovies = async function (input){
       let data = await DataMovie.search(input);
-      V.renderSearchBar(data);
+     
       V.renderSearchResults(data);
     }
 
-    V.renderSearchBar = function (data){
-      let res = data;
-      let content = document.querySelector("#header");
-      if (data=null){
-        res = [{name:""}];
-      }
-      content.innerHTML = SearchBar.format(res);
-    }
+    // V.renderSearchBar = function (){
+    //   // let res = data;
+    //   let content = document.querySelector("#header");
+    //   // if (data=null){
+    //   //   res = [{name:""}];
+    //   // }
+    //   content.innerHTML = SearchBar.format(res);
+    // }
 
     V.renderSearchResults = function (data){
     
     let content = document.querySelector("#content");
-    content.innerHTML = SearchResults.formate(data);
+    content.innerHTML = SearchResults.format(data);
 }
 
 

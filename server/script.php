@@ -1,4 +1,6 @@
 <?php
+ini_set("display_errors" , 1);
+error_reporting(E_ALL);
 /** ARCHITECTURE PHP SERVEUR : Rôle du fichier script.php
  * 
  * Ce fichier est celui à qui on adresse toutes les requêtes HTTP.
@@ -87,11 +89,17 @@ if ( isset($_REQUEST['todo']) ){
       case 'search':
         $data = searchMoviesController();
           break;
+      case 'readCategories':
+        $data = readCategoriesController();
+          break;
+
     default: // il y a un paramètre todo mais sa valeur n'est pas reconnue/supportée
       echo json_encode('[error] Unknown todo value');
       http_response_code(400); // 400 == "Bad request"
       exit();
   }
+
+  
 //     if ($todo == 'readall'){
 //         $data = readAllController();
 //     }
@@ -135,8 +143,9 @@ if ( isset($_REQUEST['todo']) ){
    * par la fonction de contrôleur et encodées en JSON (json_encode).
    * On renvoie aussi un code de réponse HTTP 200 (OK) pour indiquer que la requête a été traitée avec succès.
    */
+  http_response_code(200); 
   echo json_encode($data);
-  http_response_code(200); // 200 == "OK"
+  // 200 == "OK"
   exit();
 
    
