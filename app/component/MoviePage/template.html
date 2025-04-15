@@ -13,4 +13,29 @@
     <p class="moviepage__director">{{director}}</p>
     <p class="moviepage__description">{{description}}</p> 
     </div>
+    <!-- user rating -->
+    <!-- <input type="number" > -->
+    <!-- des etoiles en svg et selon la position de l'etoile selon laquelle on clique, on ajoute un nouveau rating dans le data -->
+    <div class="userRatings__container">
+      <div class="userRatings__star">
+    <input id="s1" type="button" value="1" onclick="C.handlerAddChangeRating()">
+    <label for="s1"><img class="addRating" src="../server/images/star.svg" alt="add Rating" ></label>
+    </div>
+    <div class="userRatings__star">
+    <input id="s2" type="button" value="2">
+    <label for="s2"><img class="addRating" src="../server/images/star.svg" alt="add Rating" ></label>
+</div>
+    <div class="userRatings__star">
+    <input id="s3" type="button" value="3">
+    <label for="s3"><img class="addRating" src="../server/images/star.svg" alt="add Rating" ></label>
+</div>
+    <div class="userRatings__star">
+    <input id="s4" type="button" value="4">
+    <label for="s4"><img class="addRating" src="../server/images/star.svg" alt="add Rating" ></label>
+</div>
+    <div class="userRatings__star">
+    <input id="s5" type="button" value="5">
+    <label for="s5"><img class="addRating" src="../server/images/star.svg" alt="add fav" ></label>
+  </div>
+</div>
 </section>
