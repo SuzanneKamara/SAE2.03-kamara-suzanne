@@ -25,7 +25,8 @@ Form.autofill = function(movie){
 
     
     // let inputEntree = document.querySelector("input[name=entree]"); 
-   
+    let id= document.querySelector("div.updmovie input[name=id]");
+    id.value= movie.id;
     let name= document.querySelector("div.updmovie input[name=name]");
     name.value= movie.name;
     let year= document.querySelector("div.updmovie input[name=year]");

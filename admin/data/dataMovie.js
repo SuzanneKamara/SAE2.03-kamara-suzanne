@@ -79,7 +79,7 @@ DataMovie.request= async function(name){
     return data;
 }
 
-export {DataMovie};
+
 
 DataMovie.readCategories= async function(){
     // fetch permet d'envoyer une requête HTTP à l'URL spécifiée. 
@@ -94,7 +94,33 @@ DataMovie.readCategories= async function(){
     return data;
 }
 
+/** Datamovie.addmovie
+ * 
+ * @param {*} fdata un objet FormData contenant les données du formulaire à envoyer au serveur.
+ * @returns la réponse du serveur.
+ */
+DataMovie.update = async function (fdata) {
+    // fetch possède un deuxième paramètre (optionnel) qui est un objet de configuration de la requête HTTP:
+    //  - method : la méthode HTTP à utiliser (GET, POST...)
+    //  - body : les données à envoyer au serveur (sous forme d'objet FormData ou bien d'une chaîne de caractères, par exempe JSON)
+    let config = {
+        method: "POST", // méthode HTTP à utiliser
+        body: fdata // données à envoyer sous forme d'objet FormData
+        
+    };
+    let answer = await fetch(HOST_URL + "/server/script.php?todo=updatemovie", config);
+    let data = await answer.json();
+    // return data;
+    if (data.error) {
+        alert(data.error);
+    }
+    else {
+        return "le film a été modifié";
+    }   
+    
+}
 
+export {DataMovie};
 /* Rappel : async / await ?
     
    Il y a des instructions qui prennent du temps sans qu'on puisse prédire combien.

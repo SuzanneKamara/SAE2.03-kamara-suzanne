@@ -380,3 +380,43 @@ function readCategories(){
     $res = $stmt->fetchAll(PDO::FETCH_OBJ);
     return $res; // Retourne les résultats
 }
+
+/**
+ * Récupère le menu pour un jour spécifique dans la base de données.
+ *
+ * @param string $id La semaine pour laquelle le menu est récupéré.
+ * @param string $name Le jour pour lequel le menu est récupéré.
+ * @param string $img Le plat principal pour le jour spécifié.
+ * @param string $age Le plat principal pour le jour spécifié.
+ * @return int Un tableau d'objets contenant l'entrée, le plat principal et le dessert pour le jour spécifié.
+ */
+
+ function updMovie($id,$name, $year, $movie_length, $description, $director, $id_category, $image, $trailer, $min_age, $showcase){
+    // Connexion à la base de données
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    // Requête SQL pour récupérer le menu avec des paramètres
+    // $sql = "REPLACE INTO Repas (name, profile_pic, restriction_age) 
+    //         VALUES (:name, :img, :age) ;";
+    $sql="UPDATE `Movie` SET `name`=:name,`year`=:year,`length`=:length,`description`=:description,`director`=:director,`id_category`=:id_category,`image`=:image,`trailer`=:trailer,`min_age`=:min_age,`showcase`=:showcase WHERE id=:id";
+    
+    // Prépare la requête SQL
+    $stmt = $cnx->prepare($sql);
+    // Lie le paramètre à la valeur
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':year', $year);
+    $stmt->bindParam(':length', $movie_length);
+    $stmt->bindParam(':description', $description);
+    $stmt->bindParam(':director', $director);
+    $stmt->bindParam(':id_category', $id_category);
+    $stmt->bindParam(':image', $id_category);
+    $stmt->bindParam(':trailer', $trailer);
+    $stmt->bindParam(':min_age', $min_age);
+    $stmt->bindParam(':showcase', $showcase);
+    // Exécute la requête SQL
+    $stmt->execute();
+    
+    // Récupère les résultats de la requête sous forme d'objets
+    $res = $stmt->rowCount(); 
+    return $res;
+}

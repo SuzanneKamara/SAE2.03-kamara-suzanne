@@ -2,6 +2,7 @@
 <div class="addMovie">
   <h4 class="addMovie__title"># Ajouter un film</h4>
   <form class="addMovie__form" action="" method="post">
+    
     <input class="input" required type="text" name="name" placeholder="Saisir un titre de film">
     <input class="input" required type="text" name="year" placeholder="Saisir l'année de sortie">
     <input class="input" required type="text" name="length" placeholder="Saisir la durée du film">
@@ -60,7 +61,7 @@
     
     <form class="updmovie__form" action="" method="post">
      
-      
+      <input class="inputUpd" type="hidden" name="id">
       <input class="inputUpd" required type="text" name="name" placeholder="Saisir un titre de film" value="">
       <input class="inputUpd" required type="text" name="year" placeholder="Saisir l'année de sortie" value="">
       <input class="inputUpd" required type="text" name="length" placeholder="Saisir la durée du film" value="">
@@ -80,7 +81,7 @@
     <input class="inputUpd" type="radio" id="showcaseChoice2upd" name="showcase" value="0" />
     <label for="showcaseChoice2upd">no</label>
     
-    <input class="addButton" onclick=" C.handlerUpdmovie()" type="submit" value="updatemovie" name="todo">
+    <input class="addButton" onclick=" C.handlerUpdMov()" type="submit" value="updatemovie" name="todo">
     </form>
     </div>
 

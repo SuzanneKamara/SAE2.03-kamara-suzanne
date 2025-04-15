@@ -199,6 +199,24 @@
       
       
     };
+    C.handlerUpdMov = async function(){
+        
+        // il s'agit de l'élément <form> du composant NewMenuForm
+        let form = document.querySelector('.updmovie__form');
+       
+        let fd = new FormData(form);
+        // Attend la réponse de la fonction `DataMenu.update(fd)`
+        // let read = await DataMov.read();
+       
+        let data= DataMovie.update(fd);
+        
+        // let res = await DataMov.updMov(fd,MovId);
+        
+        return data;
+        
+        // Affiche le résultat de la mise à jour dans le journal
+        V.renderLog(res);
+    }
 
     // S'OCCUPER DU UPDATE MOVIE
     // let datauser= await DataUser.readUser(id);
