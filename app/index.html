@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/kmz3nfg.css">
   </head>
 
   <body>
@@ -80,7 +81,7 @@
       V.renderSearchBar();
       }
     C.getUserAge= function  () {
-      let age = document.getElementById("user").value;
+      let age = document.getElementById("userselect").value;
       
 
       console.log(age);
@@ -187,6 +188,41 @@
     content.innerHTML = SearchResults.format(data);
 }
 
+C.handlerAddChangeRating= async function  (num, id_movie) {
+  let movie = await DataMovie.request(id_movie);
+  console.log(movie[0].id); 
+  let user = document.querySelector('#user').selectedOptions;
+  let n = user.item(0).textContent;
+  let data = await DataMovie.addRating(num,movie.id,C.getUserId(C.handlerReadUserId(n)));
+  for (let i=1; i<=num; i++){
+    let etoile = document.querySelector(".addRating"+i+'"');
+    etoile.style.fill = "yellow";
+  }
+  
+}
+
+C.handlerReadRating = async function (id_movie,id_user){
+  let user = document.querySelector('#user').selectedOptions;
+  let n = user.item(0).textContent;
+  let data = await DataMovie.readRating(id_movie,id_user);
+  console.log(data);
+  return data;
+}
+
+C.handlerAddChangeRating= async function  (num, id_movie) {
+  let movie = await DataMovie.request(id_movie);
+  
+  let user = await document.querySelector('#userselect').selectedOptions;
+  let n = user.item(0).textContent;
+  console.log(n);
+  let userId = await C.handlerReadUserId(n);
+  let data = await DataMovie.addRating(num,movie.id,userId);
+  for (let i=1; i<=num; i++){
+    let etoile = document.querySelector(".addRating"+i+'"');
+    etoile.style.fill = "yellow";
+  }
+  
+}
 
       C.start(); // Démarre l'application
     </script>

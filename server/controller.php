@@ -280,4 +280,26 @@ function readUserIdController(){
       // }
       
       }
+      function addRatingController(){
+        // Vérification du paramètre 'todo'
+        
+        
+      $rating = $_REQUEST['rating'];    
+      $id_movie = $_REQUEST['id_movie'];
+      $id_user = $_REQUEST['id_user'];
       
+      $ok = addRating( $rating,$id_movie, $id_user);
+      return $ok;
+      }
+
+      function addCommentController(){
+        // Vérification du paramètre 'todo'
+        
+        
+      $Comment = $_REQUEST['Comment'];    
+      $id_movie = $_REQUEST['id_movie'];
+      $id_user = $_REQUEST['id_user'];
+      
+      $ok = addComment($Comment, $id_movie, $id_user);
+      return $ok;
+      }

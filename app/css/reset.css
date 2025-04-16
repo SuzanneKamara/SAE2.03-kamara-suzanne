@@ -9,3 +9,9 @@ ul {
   margin: 0;
   list-style: none;
 }
+body{
+  font-family: "futura-pt", sans-serif;
+font-weight: 500;
+font-style: normal;
+}
+
