@@ -1,24 +1,96 @@
-.moviepage__trailer{
-  width: 70%;
-  height: 35rem;
-  align-self: center;
+
+.showcaseCard{
+  display: none;
+  width: 77rem;
+  height: 47rem;
   position: relative;
-  top: 2rem;
-}
-.Moviepage__info{
-  .img__container{
-    height: 22rem;
-  width: 16rem;
-    display: flex;
-  overflow: hidden;
-  position: relative;
-  flex-shrink: 1;
-  z-index: -2;
-   .img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-   }
+  top: 0;
+  color: var(--clr-light);
+  /* 
+  left: 0;
+  display: none;
+  z-index: 4;
+  align-self: center; */
+  /* top: 0;
+  left: 0; */
+  margin: 5rem;
+  img{
+    vertical-align: middle;
+    width: 77rem;
+    height: 47rem;
+   /*  flex-shrink: 0;
+    object-fit: cover; */
   }
+  
 }
+.current{
+  display:block
+}
+.showcase__caption{
+  background-color: var(--bg-grey-drk);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: absolute;
+  /* z-index: 6; */
+  bottom: 0;
+  height: 15rem;
+  width: 100%;
+  color: var( --clr-light);
+}
+
+.showcaseMovies__title{
+  text-align: center;
+  align-self: center;
+}
+
+.showcaMovies__carousel{
+  max-width: 62rem;
+  position: relative;
+  gap: 0;
+  top: 0;
+  left: 0;
+  height: 47rem;
+  width: 77rem;
+/* z-index: 7; */
+   display: flex;
+  /* overflow: hidden;  */
+  transition: transform 0.5s ease-in-out;
+}
+.showcaseMovies__container{
+  position: relative;
+  width: 100%;
+  /* overflow: hidden; */
+  /* width: 77rem;
+  height: 47rem;
+  background-color: var(--bg-grey-drk); */
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; */
+
+  button{
+    position: absolute;
+  top: 50%;
+  /* transform:translateY(-100%); */
+  background-color: var(--bg-grey-drk);
+  /* color: var(--bg-clr); */
+  fill: var(--bg-clr);
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  z-index: 6;
+}
+  }
+
+  .prev{
+    left: 1rem;
+  }
+  .next{
+    right: 1rem;
+  }
+  

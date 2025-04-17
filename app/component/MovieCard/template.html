@@ -1,5 +1,5 @@
-<div  class="movie-link"  >
-  <figure class="moviecard font-sans">
+
+<figure class="moviecard font-sans {{category__name}}">
   <div class="moviecard__img-container"onclick="C.getMovie('{{title}}') ">
   <img src="../server/images/{{img}}" alt="moviecard" class="moviecard__img"></div>
   <figcaption class="moviecard__caption">
@@ -7,7 +7,9 @@
     <label for="{{title}}" class="addFav_label" >
       <img class="addFav" src="../server/images/star.svg" alt="add favorite" >
     </label>
+     
+    
     <input  class="tohide" type="checkbox" onchange="C.handlerAddDelFav( '{{title}}' )" id="{{title}}" name="todo">
   </figcaption>
 </figure>
-</div>
+

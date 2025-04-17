@@ -8,7 +8,7 @@ let template = await templateFile.text();
 // import des teplate des category
 let template2File = await fetch("./component/ShowcaseMovies/template1.html");
 let template2 = await template2File.text();
-console.log(template2);
+
 let ShowcaseMovies = {};
 
 ShowcaseMovies.format = function (movie) {

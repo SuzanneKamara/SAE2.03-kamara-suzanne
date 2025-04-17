@@ -2,5 +2,11 @@
 <section class="category">
   <h1 class="category__title"> {{catname}}</h1>
   <div class="card__container">{{movies}}</div>
-
+  <!-- carousel buttons -->
+  <button onclick="C.plusSlidesCat(-1,'{{catname}}')" class="prev"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path d="M10 19L3 12M3 12L10 5M3 12L21 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg></button>
+<button onclick="C.plusSlidesCat(1,'{{catname}}')" class="next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path d="M14 5L21 12M21 12L14 19M21 12L3 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg></button>
 </section>

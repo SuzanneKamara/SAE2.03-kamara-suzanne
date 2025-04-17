@@ -11,9 +11,7 @@
   
   
 }
-body{
-  background-color: var(--color-black);
-}
+
 .category{
   .category__title{
     color: var(--color-white);

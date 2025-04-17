@@ -11,9 +11,10 @@
   <body>
 
     <header id="header"></header>
+    <div class="site-body">
     <section id="showcase"></section>
     <section id="content" class="font-sans"></section>
-
+    </div>
     <script type="module">
       // components
       import { NavBar } from "./component/NavBar/script.js";
@@ -30,13 +31,21 @@
       
       window.C = {};
       C.start = function () {
-        C.handlerShowcase();
+        // C.handlerShowcase();
+        
+        
         C.handlerUser();
+        // C.handlerCarouselStart();
+        
+        C.handlerCarouselStart();
         C.getUserAge();
+        
+
         // V.renderShowcaseMovies();
         // V.renderSearchBar(data);
-        C.handlerShowcase();
-        // console.log(DataProfile.readId("Interstellar"));
+       
+        
+        // C.handlerCarousel();
       };
       
 
@@ -84,11 +93,24 @@
       let age = document.getElementById("userselect").value;
       
 
-      console.log(age);
+     
       
       
       let res = C.getAllMovies(age);
+      C.getUserPP()
       return res
+    };
+    C.getUserPP= async function  () {
+      let user = document.querySelector('#userselect').selectedOptions;
+      let n = user.item(0).textContent;
+      
+      let id = await DataProfile.readId(n);
+      let data = await DataProfile.readUser(id[0].id);
+      console.log(data.profile_pic);
+      let img = document.querySelector("#profile_img");
+      img.style.display = "block";
+      img.src="../server/images/"+data[0].profile_pic;
+      
     };
     
     C.handlerAddFav= async function  (id_movie,id_user) {
@@ -107,13 +129,12 @@
 
     C.handlerAddDelFav= async function  (movie) {
       let movieId = await DataMovie.request(movie);
-      console.log(movieId[0].id);
+     
       let name = document.querySelector('#user').selectedOptions;
       let n = name.item(0).textContent;
-      console.log(n);
-      // console.log.id);
+     
       let user = await  C.handlerReadUserId(n);
-      console.log(user);
+     
       let label = document.getElementById(movie).checked
       if (label==true) {
         C.handlerAddFav(movieId[0].id,user);
@@ -128,6 +149,7 @@
       V.renderMovies = function (movies) {
         let content = document.querySelector("#content");
         content.innerHTML = CategorySection.formatMany(movies);
+
       };
 
 
@@ -137,10 +159,11 @@
       let data = await DataMovie.requestAll(age);
      
       V.renderMovies(data);
+      C.handlerShowcase();
     }
     C.handlerReadUserId = async function (name) {
       let data = await DataProfile.readId(name);
-      console.log(data[0]);
+     
       
 
       return data[0].id;
@@ -153,7 +176,7 @@
       
       V.renderShowcaseMovies(data);
     }
-    // console.log(C.handlerShowcase());
+    
 
     V.renderShowcaseMovies= function (data){
       // let data = DataMovie.showcaseMovies();
@@ -164,7 +187,7 @@
         ];
       }
       content.innerHTML = ShowcaseMovies.formatShowcase(data);
-      console.log(data);
+     
     };
 
     C.handlerSearchMovies = async function (input){
@@ -190,7 +213,7 @@
 
 C.handlerAddChangeRating= async function  (num, id_movie) {
   let movie = await DataMovie.request(id_movie);
-  console.log(movie[0].id); 
+  
   let user = document.querySelector('#user').selectedOptions;
   let n = user.item(0).textContent;
   let data = await DataMovie.addRating(num,movie.id,C.getUserId(C.handlerReadUserId(n)));
@@ -205,7 +228,7 @@ C.handlerReadRating = async function (id_movie,id_user){
   let user = document.querySelector('#user').selectedOptions;
   let n = user.item(0).textContent;
   let data = await DataMovie.readRating(id_movie,id_user);
-  console.log(data);
+  
   return data;
 }
 
@@ -214,7 +237,7 @@ C.handlerAddChangeRating= async function  (num, id_movie) {
   
   let user = await document.querySelector('#userselect').selectedOptions;
   let n = user.item(0).textContent;
-  console.log(n);
+  
   let userId = await C.handlerReadUserId(n);
   let data = await DataMovie.addRating(num,movie.id,userId);
   for (let i=1; i<=num; i++){
@@ -223,6 +246,97 @@ C.handlerAddChangeRating= async function  (num, id_movie) {
   }
   
 }
+C.handlerCarouselStart= async function(){
+  let slides = document.getElementsByClassName("showcaseCard");
+  slides[0].classList.add("current");
+  // console.log(slides);
+  
+  for (let j = 1; j < slides.length; j++) {
+    slides[0].style.display = "flex";
+      slides[j].style.display = "none";  
+  }
+}
+
+// carousel pour les films à la une
+let slideIndex = 1;
+
+C.showSlides = function(n) {
+  // C.handlerCarouselStart();
+
+  let i;
+  let slides = document.getElementsByClassName("showcaseCard");
+
+  // console.log(slides);
+  
+  for (let j = 1; j < slides.length; j++) {
+    slides[0].style.display = "flex";
+      slides[j].style.display = "none";  
+  }
+  if (n > slides.length) {
+    slideIndex = 1;
+  }    
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  slides[slideIndex-1].style.display = "flex";  
+  
+}
+C.plusSlides = function(n) {
+  C.showSlides(slideIndex += n);
+}
+
+
+// carousel pour les films par catégories
+let slideIndexCat = 1;
+
+C.showSlidesCat = function(n,cat) {
+  // C.handlerCarouselStart();
+
+  let i;
+  let slides = document.getElementsByClassName(cat);
+  
+
+  // console.log(document.getElementsByClassName(cat));
+  
+  for (let j = 1; j < slides.length; j++) {
+    slides[0].style.display = "flex";
+      slides[j].style.display = "none";  
+  }
+  if (n > slides.length) {
+    slideIndexCat = 1;
+  }    
+  if (n < 1) {
+    slideIndexCat = slides.length;
+  }
+  for (i = 0; i < slides.length; i+=2) {
+      slides[i].style.display = "none";  
+  }
+  slides[slideIndexCat-1].style.display = "flex";  
+  
+}
+C.plusSlidesCat = function(n,cat) {
+  C.showSlidesCat(slideIndexCat += n,cat);
+}
+
+// C.handlerCarousel= function(){
+//   const carousel = document.querySelector('.showcaseMovies__carousel');
+//   const prevButton = document.querySelector('.prev');
+//   const nextButton = document.querySelector('.next');
+//   console.log(carousel);
+//   let index=0;
+//   const totalSlides = document.document.getElementsByClassName("showcaseCard").length;
+//   nextButton.addEventListener('click', () => {
+//     index=(index + 1) % totalSlides;
+//     carousel.style.transform = `translateX(-${index * 200}rem)`;
+//   });
+//   prevButton.addEventListener('click', () => {
+//     index=(index-1+totalSlides)%totalSlides;
+//     carousel.style.transform = `translateX(-${index * 200}rem)`;
+//   });
+// }
 
       C.start(); // Démarre l'application
     </script>

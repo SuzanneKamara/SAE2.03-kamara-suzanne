@@ -1,11 +1,14 @@
-<div  class="movie-link showcase"  >
-  <figure class="moviecard font-sans">
-  <div class="moviecard__img-container"onclick="C.getMovie('{{title}}') ">
-  <img src="../server/images/{{img}}" alt="moviecard" class="moviecard__img"></div>
-  <figcaption class="moviecard__caption">
-    <h1 class="moviecard__title"> {{title}} </h1>
-    <p class="moviecard__desc">{{desc}}</p>
-  </figcaption>
-</figure>
+<h1 class="showcaseMovies__title">à la une</h1>
+<div class="showcaseMovies__container">
+    
+    <div class="showcaMovies__carousel">
+    {{showcaseMovies}}
 </div>
+    <button onclick="C.plusSlides(-1)" class="prev"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M10 19L3 12M3 12L10 5M3 12L21 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg></button>
+    <button onclick="C.plusSlides(1)" class="next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M14 5L21 12M21 12L14 19M21 12L3 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg></button>
 
+</div>
